@@ -1,4 +1,4 @@
-# advShiny
+# e2m2Workshop
 >
 > [!CAUTION]
 > This workshop is a __premium__ content reserved to [cynkra GmbH](cynkra.com) clients. Please contact [us](https://cynkra.com/contact/) if you need any extra information or help.
