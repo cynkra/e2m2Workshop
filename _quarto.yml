@@ -1,0 +1,21 @@
+project:
+  type: website
+
+website:
+  title: "Data Analysis and Reporting with Shiny and Quarto"
+  navbar:
+    left:
+      # - href: index.qmd
+        # text: Home
+      # - exercises.qmd
+      - about.qmd
+    logo: ./assets/images/cynkra.svg
+  page-footer:
+    left: "Except where otherwise noted, content on this blog is licensed under the property of [cynkra GmbH](https://cynkra.com)"
+    right: Blog created with [Quarto](https://quarto.org/).
+
+format:
+  html:
+    theme: sketchy
+    css: styles.css
+    toc: true

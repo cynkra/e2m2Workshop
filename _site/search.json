@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "",
+    "text": "This course focuses on demonstrating how Shiny and Quarto can supercharge your data analysis and reporting workflows. It is therefore not a Data Science workshop."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "",
+    "text": "This course focuses on demonstrating how Shiny and Quarto can supercharge your data analysis and reporting workflows. It is therefore not a Data Science workshop."
+  },
+  {
+    "objectID": "index.html#pre-requisites",
+    "href": "index.html#pre-requisites",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "Pre-requisites:",
+    "text": "Pre-requisites:\n\nRecent R version installed (R &gt; 4.2.0).\nKnow how to run a script.\nKnowledge about R package development.\nUp to date IDE: RStudio/VSCode/Positron/… (https://posit.co/download/rstudio-desktop/).\nQuarto installed: https://quarto.org/docs/get-started/."
+  },
+  {
+    "objectID": "index.html#workshop-program",
+    "href": "index.html#workshop-program",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "Workshop program",
+    "text": "Workshop program\n\n\n\nSession\nTopic\nDuration\n\n\n\n\nWelcome\n👋 Welcome\n10 min\n\n\nSession 1\n📚 Exploratory data analysis with Shiny\n1h40min\n\n\nBreak\n☕ Active break (ask any questions)\n20 min\n\n\nSession 2\n📚 Seamless reporting with Quarto\n1h40min\n\n\nWrap\n🎁 Wrap up\n10 min"
+  },
+  {
+    "objectID": "index.html#recommended-readings",
+    "href": "index.html#recommended-readings",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "Recommended readings:",
+    "text": "Recommended readings:\n\nBooks:\n\nR packages.\nMastering Shiny."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Your instructors",
+    "section": "",
+    "text": "David Granjon (cynkra)\n\nDavid is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps."
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#important-information",
+    "href": "sessions/0_welcome/index.html#important-information",
+    "title": "Introduction",
+    "section": "Important information",
+    "text": "Important information\n\nWorkshop website: TBD.\n…"
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#who-are-you-workshop-pre-requisites",
+    "href": "sessions/0_welcome/index.html#who-are-you-workshop-pre-requisites",
+    "title": "Introduction",
+    "section": "Who are you: workshop pre-requisites",
+    "text": "Who are you: workshop pre-requisites\n\n\nYou are a master student/doctoral student with data analysis background.\nYou don’t know or just heard about Shiny/Quarto and want to supercharge your work.\nYou know R."
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#david-granjon",
+    "href": "sessions/0_welcome/index.html#david-granjon",
+    "title": "Introduction",
+    "section": "David Granjon",
+    "text": "David Granjon\n\n\nDavid works as a Lead Shiny Developer at cynkra GmbH and founder of the open source RinteRface organisation."
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#objectives",
+    "href": "sessions/0_welcome/index.html#objectives",
+    "title": "Introduction",
+    "section": "Objectives",
+    "text": "Objectives\n\n\nUnderstand what is Shiny.\nHow to move from “static” data analysis to “dynamic” data analysis.\nDiscover how Quarto can improve your data reporting journey."
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#tbd",
+    "href": "sessions/1_shiny/index.html#tbd",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "TBD",
+    "text": "TBD"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#quarto",
+    "href": "sessions/2_quarto/index.html#quarto",
+    "title": "Easy reporting with Quarto",
+    "section": "Quarto?",
+    "text": "Quarto?"
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#hi-and-welcome",
+    "href": "sessions/0_welcome/index.html#hi-and-welcome",
+    "title": "Introduction",
+    "section": "Hi and Welcome!",
+    "text": "Hi and Welcome!"
+  },
+  {
+    "objectID": "sessions/3_closing/index.html#thanks",
+    "href": "sessions/3_closing/index.html#thanks",
+    "title": "Closing remarks",
+    "section": "Thanks!",
+    "text": "Thanks!"
+  }
+]

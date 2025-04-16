@@ -1,0 +1,58 @@
+---
+title: "Introduction"
+author: "David Granjon (cynkra GmbH)"
+format: 
+  revealjs:
+    #code-annotations: select
+    footer: "<img src=\"../../assets/images/cynkra.svg\" width=\"10%\"/>"
+    css: [
+      "../../assets/css/custom.scss"
+    ]
+    height: 900
+    width: 1600
+    code-link: true
+    code-copy: true
+    fontsize: 24pt
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    chalkboard: false
+    transition: none
+    background-transition: none
+editor:
+    render-on-save: true
+---
+
+## Hi and Welcome! {style="font-size: 1.5em"}
+
+![](../../assets/images/hello.gif){fig-align="center" width=100%}
+
+
+## Important information {style="font-size: 1.5em"}
+
+
+- Workshop website: TBD.
+- ...
+
+
+## Who are you: workshop pre-requisites {style="font-size: 1.5em"}
+
+:::{.incremental}
+- You are a master student/doctoral student with data analysis background.
+- You don't know or just heard about Shiny/Quarto and want to supercharge your work.
+- You know R.
+:::
+
+## **David Granjon**  {style="font-size: 1.5em"}
+
+![](./../../assets/images/david.jpg){fig-align="center" width=70%}
+
+<p style="text-align: center">David works as a Lead Shiny Developer at [__cynkra GmbH__](https://cynkra.com/) and founder of the open source [__RinteRface__](https://rinterface.com/) organisation.</p>
+
+## Objectives {style="font-size: 1.5em"}
+
+:::{.incremental}
+- Understand what is Shiny.
+- How to move from "static" data analysis to "dynamic" data analysis.
+- Discover how Quarto can improve your data reporting journey.
+:::

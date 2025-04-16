@@ -1,0 +1,17 @@
+Package: e2m2Workshop
+Title: Data Analysis and Reporting with Shiny and Quarto
+Version: 0.0.0.9000
+Authors@R: 
+    person("David", "Granjon", , "david@cynkra.com", role = c("aut", "cre"))
+Description: Data Analysis and Reporting with Shiny and Quarto.
+License: Copyrights cynkra GmbH
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Imports:
+    roxy.shinylive,
+    shiny,
+    bslib,
+    bsicons,
+    deSolve,
+    quarto
+RoxygenNote: 7.3.2

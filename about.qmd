@@ -1,0 +1,11 @@
+---
+title: "Your instructors"
+editor: 
+    render-on-save: true
+---
+
+# David Granjon (cynkra)
+
+![](./assets/images/david.jpg)
+
+David is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps.

@@ -1,0 +1,26 @@
+---
+title: "Easy reporting with Quarto"
+author: "David Granjon (cynkra GmbH)"
+format: 
+  revealjs:
+    #code-annotations: select
+    footer: "<img src=\"../../assets/images/cynkra.svg\" width=\"10%\"/>"
+    css: [
+      "../../assets/css/custom.scss"
+    ]
+    height: 900
+    width: 1600
+    code-link: true
+    code-copy: true
+    fontsize: 24pt
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    chalkboard: false
+    transition: none
+    background-transition: none
+editor:
+    render-on-save: true
+---
+
+## Quarto?
