@@ -1,60 +1,33 @@
 # advShiny
+>
 > [!CAUTION]
-> This workshop is a __premium__ content reserved to [cynkra GmbH](cynkra.com) clients. Please contact [us](https://cynkra.com/contact/) if you need any extra information or help. 
+> This workshop is a __premium__ content reserved to [cynkra GmbH](cynkra.com) clients. Please contact [us](https://cynkra.com/contact/) if you need any extra information or help.
 
 ## Welcome
 
-This course focuses on advanced concepts for developing and maintaining shiny apps, enhancing user experience and ease of maintenance.
+This course focuses on demonstrating how __Shiny__ and __Quarto__ can supercharge your data analysis and reporting workflows.
+It is therefore not a Data Science workshop.
 
-## Pre-requisites:
+## Pre-requisites
 
-- Followed Introduction to Shiny or equivalent.
+- Recent R version installed (R > 4.2.0).
+- Know how to run a script.
 - Knowledge about R package development.
+- Up to date IDE: RStudio/VSCode/Positron/… (<https://posit.co/download/rstudio-desktop/>).
+- Quarto installed: <https://quarto.org/docs/get-started/>.
 
-## Program
+## Workshop program
 
-1. Session - Wireframing and UI/UX design:
+| Session | Topic | Duration |
+|----------|----------------------------------------|------------|
+| Welcome   | 👋 [Welcome](./sessions/0_welcome/index.html) | 10 min |
+| Session 1 | 📚 [Exploratory data analysis with Shiny](./sessions/1_shiny/index.html) | 1h40min |
+| Break | ☕ Active break (ask any questions) | 20 min |
+| Session 2 | 📚 [Seamless reporting with Quarto](./sessions/2_quarto/index.html) | 1h40min |
+| Wrap      | 🎁 [Wrap up](./sessions/3_closing/index.html) | 10 min |
 
-  - Introduction to UI and UX design.
-  - Wireframing.
-  - Layout concepts.
-  - Colors and typography.
+## Recommended readings
 
-2. Session - Mastering user feedbacks:
-
-  - Input and output validation.
-  - Notifications.
-  - Manage waiting time: long running task, progress ...
-  - Help messages: tooltips, popovers.
-
-3. Session - Best practices for Shiny devs (COMMING SOON):
-
-  - Dependency management with renv
-  - Package structure.
-  - Modularisation.
-  - ...
-
-4. Session 4 - Testing:
-
-  - Unit tests with `{testthat}`.
-  - Server testing for `{shiny}`.
-  - Headless testing with `{shinytest2}`.
-
-6. Session 5 - Security (COMMING SOON):
-
-  - Database connections. 
-  - Secrets.
-  - {config} package.
-
-5. Session 6 - Deployment (COMMING SOON):
-
-  - shinylive (caution about data privacy), shinyapps.io
-  - ...
-
-## Recommended readings:
 - Books:
-  - Engineering Production-Grade Shiny apps
-  - R packages
-  - Mastering Shiny
-- Blogs:
-  - TBD
+  - [R packages](https://r-pkgs.org/).
+  - [Mastering Shiny](https://mastering-shiny.org/).
