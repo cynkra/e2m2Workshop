@@ -4,7 +4,7 @@ author: "David Granjon (cynkra GmbH)"
 format: 
   revealjs:
     #code-annotations: select
-    footer: "<img src=\"../../assets/images/cynkra.svg\" width=\"10%\"/>"
+    footer: "<img src=\"../../assets/images/cynkra.svg\" width=\"5%\"/>"
     css: [
       "../../assets/css/custom.scss"
     ]
@@ -23,4 +23,242 @@ editor:
     render-on-save: true
 ---
 
-## TBD
+```{r example-app, echo=FALSE, eval=FALSE}
+library(shiny)
+library(bslib)
+library(dplyr)
+library(ggplot2)
+library(ggExtra)
+
+penguins_csv <- "https://raw.githubusercontent.com/jcheng5/simplepenguins.R/main/penguins.csv"
+
+df <- readr::read_csv(penguins_csv)
+# Find subset of columns that are suitable for scatter plot
+df_num <- df |> select(where(is.numeric), -Year)
+
+ui <- page_sidebar(
+  sidebar = sidebar(
+    varSelectInput("xvar", "X variable", df_num, selected = "Bill Length (mm)"),
+    varSelectInput("yvar", "Y variable", df_num, selected = "Bill Depth (mm)"),
+    checkboxGroupInput(
+      "species",
+      "Filter by species",
+      choices = unique(df$Species),
+      selected = unique(df$Species)
+    ),
+    hr(), # Add a horizontal rule
+    checkboxInput("by_species", "Show species", TRUE),
+    checkboxInput("show_margins", "Show marginal plots", TRUE),
+    checkboxInput("smooth", "Add smoother"),
+  ),
+  plotOutput("scatter")
+)
+
+server <- function(input, output, session) {
+  subsetted <- reactive({
+    req(input$species)
+    df |> filter(Species %in% input$species)
+  })
+
+  output$scatter <- renderPlot(
+    {
+      p <- ggplot(subsetted(), aes(!!input$xvar, !!input$yvar)) +
+        list(
+          theme(legend.position = "bottom"),
+          if (input$by_species) aes(color = Species),
+          geom_point(),
+          if (input$smooth) geom_smooth()
+        )
+
+      if (input$show_margins) {
+        margin_type <- if (input$by_species) "density" else "histogram"
+        p <- ggExtra::ggMarginal(
+          p,
+          type = margin_type,
+          margins = "both",
+          size = 8,
+          groupColour = input$by_species,
+          groupFill = input$by_species
+        )
+      }
+
+      p
+    },
+    res = 100
+  )
+}
+
+shinyApp(ui, server)
+```
+
+```{r mtcars-app, echo=FALSE, eval=FALSE}
+library(shiny)
+library(ggplot2)
+
+reactlog::reactlog_enable()
+
+ui <- fluidPage(
+  reactlog::reactlog_module_ui(),
+  div(
+    style = "visibility: hidden",
+    selectInput(
+      "variable", "Variable:",
+      colnames(mtcars),
+      selected = c("qsec", "hp", "cyl"),
+      multiple = TRUE
+    ),
+    tableOutput("data"),
+    plotOutput("plot")
+  )
+)
+
+server <- function(input, output, session) {
+  
+  reactlog::reactlog_module_server()
+  
+  res <- reactive({
+    mtcars[, c("mpg", input$variable), drop = FALSE]
+  })
+  
+  output$data <- renderTable({
+    head(res())
+  }, rownames = TRUE)
+  
+  output$plot <- renderPlot({
+    ggplot(data = res()) +
+      geom_point(mapping = aes(x = hp, y = qsec))
+  })
+}
+
+shinyApp(ui, server)
+```
+
+```{r shinylive_url, echo = FALSE, results = 'asis'}
+# extract the code from knitr code chunks by ID
+shiny_demo_code <- paste0(
+  c(
+    knitr::knit_code$get("example-app")
+  ),
+  collapse = "\n"
+)
+```
+
+```{r mtcars_url, echo = FALSE, results = 'asis'}
+# extract the code from knitr code chunks by ID
+mtcars_demo_code <- paste0(
+  c(
+    knitr::knit_code$get("mtcars-app")
+  ),
+  collapse = "\n"
+)
+```
+
+## I get a pretty cool local R program ...
+
+![](../../assets/images/1_shiny/sad.svg){width=50% fig-align="center"}
+
+... But nobody can use it.
+
+## But wait ... web applications exist for a long time.
+
+![](../../assets/images/1_shiny/hard.svg){fig-align="center"}
+
+- Sure, you just need to convert R to web languages (HTML, CSS, JS).
+
+## Isn't there an easier way for R developers?
+
+![](../../assets/images/1_shiny/surprise.svg){fig-align="center"}
+
+## Welcome Shiny?
+
+::::{.columns}
+:::{.column}
+
+![](../../assets/images/1_shiny/shiny.svg){width="50%" fig-align="center"}
+
+:::
+
+:::{.column}
+
+- Make web development __accessible__ to R people.
+- Unleash programs __interactivity__.
+- __Point and click__ data Science.
+
+:::
+::::
+
+## How does a Shiny app looks? 
+
+```{r shinylive_iframe_app, echo = FALSE, out.width = '150%', out.extra = 'style = "position: relative; z-index:1"', eval=TRUE}
+knitr::include_url(roxy.shinylive::create_shinylive_url(shiny_demo_code, header = FALSE), height = "800px")
+```
+
+## Is the code complex?
+
+```{r shinylive_iframe_editor, echo = FALSE, out.width = '150%', out.extra = 'style = "position: relative; z-index:1"', eval=TRUE}
+knitr::include_url(roxy.shinylive::create_shinylive_url(shiny_demo_code, mode = "editor"), height = "800px")
+```
+
+## Anatomy of a Shiny app
+
+![](../../assets/images/1_shiny/anatomy.png){fig-align="center"}
+
+## UI: shiny is able to produce HTML from R!
+
+```{r, eval=FALSE, echo=TRUE}
+shiny::selectInput("select", "Select", colnames(mtcars))
+```
+
+```{r}
+cat(as.character(shiny::selectInput("select", "Select", colnames(mtcars))))
+```
+
+You don't need to write any HTML, CSS and JS (but you could 😈)
+
+## Initialize interactivity with inputs
+
+![](../../assets/images/1_shiny/inputs.png){fig-align="center"}
+:::{.incremental}
+
+- UI: Create elements with an __unique__ `inputId`, `variable`.
+- Server: recover its value within `input[["variable"]]` or `input$variable`.
+- `input` is __readonly__.
+
+:::
+
+## Render output elements
+
+![](../../assets/images/1_shiny/outputs.png){fig-align="center"}
+
+:::{.incremental}
+
+- Use a suitable __renderer__: `renderTable`, `renderPlot`, ...
+- Assign unique __outputId__: `data`.
+- Recover output on the UI (IDs must match!): `tableOutput`, `plotOutput`, ...
+- `output` is __readonly__.
+
+:::
+
+## Intermediate results with reactive expressions
+
+![](../../assets/images/1_shiny/reactive.png){width=75% fig-align="center"}
+
+:::{.incremental}
+
+- Return values.
+- Take dependencies on anything __reactive__ inside (input, other reactives).
+- No side effects! (write.csv, ...).
+- __Lazy__: don't run if not used.
+- __cached__: don't recompute.
+
+:::
+
+## Overview of the reactive graph
+
+![](../../assets/images/1_shiny/reactive-graph.png){fig-align="center"}
+
+## Reactive graph example
+
+```{r shinylive_iframe_mtcars, echo = FALSE, out.width = '150%', out.extra = 'style = "position: relative; z-index:1"', eval=TRUE}
+knitr::include_url(roxy.shinylive::create_shinylive_url(mtcars_demo_code, header = FALSE), height = "800px")
+```

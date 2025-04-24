@@ -4,7 +4,7 @@ author: "David Granjon (cynkra GmbH)"
 format: 
   revealjs:
     #code-annotations: select
-    footer: "<img src=\"../../assets/images/cynkra.svg\" width=\"10%\"/>"
+    footer: "<img src=\"../../assets/images/cynkra.svg\" width=\"5%\"/>"
     css: [
       "../../assets/css/custom.scss"
     ]

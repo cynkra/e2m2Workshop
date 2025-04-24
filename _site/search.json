@@ -1,5 +1,54 @@
 [
   {
+    "objectID": "sessions/3_closing/index.html#thanks",
+    "href": "sessions/3_closing/index.html#thanks",
+    "title": "Closing remarks",
+    "section": "Thanks!",
+    "text": "Thanks!"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#i-get-a-pretty-cool-local-r-program",
+    "href": "sessions/1_shiny/index.html#i-get-a-pretty-cool-local-r-program",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "I get a pretty cool local R program …",
+    "text": "I get a pretty cool local R program …\n\n… But nobody can use it."
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#but-wait-web-applications-exist-for-a-long-time.",
+    "href": "sessions/1_shiny/index.html#but-wait-web-applications-exist-for-a-long-time.",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "But wait … web applications exist for a long time.",
+    "text": "But wait … web applications exist for a long time.\n\n\nSure, you just need to convert R to web languages (HTML, CSS, JS)."
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#isnt-there-an-easier-way-for-r-developers",
+    "href": "sessions/1_shiny/index.html#isnt-there-an-easier-way-for-r-developers",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Isn’t there an easier way for R developers?",
+    "text": "Isn’t there an easier way for R developers?"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#welcome-shiny",
+    "href": "sessions/1_shiny/index.html#welcome-shiny",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Welcome Shiny?",
+    "text": "Welcome Shiny?\n\n\n\n\n\n\n\n\nMake web development accessible to R people.\nUnleash programs interactivity.\n\nPoint and click data Science."
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#how-does-a-shiny-app-code-looks",
+    "href": "sessions/1_shiny/index.html#how-does-a-shiny-app-code-looks",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "How does a Shiny app code looks?",
+    "text": "How does a Shiny app code looks?"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Your instructors",
+    "section": "",
+    "text": "David Granjon (cynkra)\n\nDavid is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Data Analysis and Reporting with Shiny and Quarto",
@@ -35,11 +84,11 @@
     "text": "Recommended readings:\n\nBooks:\n\nR packages.\nMastering Shiny."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Your instructors",
-    "section": "",
-    "text": "David Granjon (cynkra)\n\nDavid is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps."
+    "objectID": "sessions/0_welcome/index.html#hi-and-welcome",
+    "href": "sessions/0_welcome/index.html#hi-and-welcome",
+    "title": "Introduction",
+    "section": "Hi and Welcome!",
+    "text": "Hi and Welcome!"
   },
   {
     "objectID": "sessions/0_welcome/index.html#important-information",
@@ -70,13 +119,6 @@
     "text": "Objectives\n\n\nUnderstand what is Shiny.\nHow to move from “static” data analysis to “dynamic” data analysis.\nDiscover how Quarto can improve your data reporting journey."
   },
   {
-    "objectID": "sessions/1_shiny/index.html#tbd",
-    "href": "sessions/1_shiny/index.html#tbd",
-    "title": "Dynamic data analysis with Shiny",
-    "section": "TBD",
-    "text": "TBD"
-  },
-  {
     "objectID": "sessions/2_quarto/index.html#quarto",
     "href": "sessions/2_quarto/index.html#quarto",
     "title": "Easy reporting with Quarto",
@@ -84,17 +126,87 @@
     "text": "Quarto?"
   },
   {
-    "objectID": "sessions/0_welcome/index.html#hi-and-welcome",
-    "href": "sessions/0_welcome/index.html#hi-and-welcome",
-    "title": "Introduction",
-    "section": "Hi and Welcome!",
-    "text": "Hi and Welcome!"
+    "objectID": "sessions/1_shiny/index.html",
+    "href": "sessions/1_shiny/index.html",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "",
+    "text": "… But nobody can use it."
   },
   {
-    "objectID": "sessions/3_closing/index.html#thanks",
-    "href": "sessions/3_closing/index.html#thanks",
-    "title": "Closing remarks",
-    "section": "Thanks!",
-    "text": "Thanks!"
+    "objectID": "sessions/1_shiny/index.html#how-does-a-shiny-app-looks",
+    "href": "sessions/1_shiny/index.html#how-does-a-shiny-app-looks",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "How does a Shiny app looks?",
+    "text": "How does a Shiny app looks?"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#is-the-code-complex",
+    "href": "sessions/1_shiny/index.html#is-the-code-complex",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Is the code complex?",
+    "text": "Is the code complex?"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#anatomy-of-a-shiny-app",
+    "href": "sessions/1_shiny/index.html#anatomy-of-a-shiny-app",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Anatomy of a Shiny app",
+    "text": "Anatomy of a Shiny app"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#shiny-is-able-to-produce-html-from-r",
+    "href": "sessions/1_shiny/index.html#shiny-is-able-to-produce-html-from-r",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Shiny is able to produce HTML from R!",
+    "text": "Shiny is able to produce HTML from R!\n\nshiny::selectInput(\"select\", \"Select\", colnames(mtcars))\n\n\n\n&lt;div class=\"form-group shiny-input-container\"&gt;\n  &lt;label class=\"control-label\" id=\"select-label\" for=\"select\"&gt;Select&lt;/label&gt;\n  &lt;div&gt;\n    &lt;select id=\"select\" class=\"shiny-input-select\"&gt;&lt;option value=\"mpg\" selected&gt;mpg&lt;/option&gt;\n&lt;option value=\"cyl\"&gt;cyl&lt;/option&gt;\n&lt;option value=\"disp\"&gt;disp&lt;/option&gt;\n&lt;option value=\"hp\"&gt;hp&lt;/option&gt;\n&lt;option value=\"drat\"&gt;drat&lt;/option&gt;\n&lt;option value=\"wt\"&gt;wt&lt;/option&gt;\n&lt;option value=\"qsec\"&gt;qsec&lt;/option&gt;\n&lt;option value=\"vs\"&gt;vs&lt;/option&gt;\n&lt;option value=\"am\"&gt;am&lt;/option&gt;\n&lt;option value=\"gear\"&gt;gear&lt;/option&gt;\n&lt;option value=\"carb\"&gt;carb&lt;/option&gt;&lt;/select&gt;\n    &lt;script type=\"application/json\" data-for=\"select\" data-nonempty=\"\"&gt;{\"plugins\":[\"selectize-plugin-a11y\"]}&lt;/script&gt;\n  &lt;/div&gt;\n&lt;/div&gt;"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#ui-shiny-is-able-to-produce-html-from-r",
+    "href": "sessions/1_shiny/index.html#ui-shiny-is-able-to-produce-html-from-r",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "UI: shiny is able to produce HTML from R!",
+    "text": "UI: shiny is able to produce HTML from R!\n\nshiny::selectInput(\"select\", \"Select\", colnames(mtcars))\n\n\n\n&lt;div class=\"form-group shiny-input-container\"&gt;\n  &lt;label class=\"control-label\" id=\"select-label\" for=\"select\"&gt;Select&lt;/label&gt;\n  &lt;div&gt;\n    &lt;select id=\"select\" class=\"shiny-input-select\"&gt;&lt;option value=\"mpg\" selected&gt;mpg&lt;/option&gt;\n&lt;option value=\"cyl\"&gt;cyl&lt;/option&gt;\n&lt;option value=\"disp\"&gt;disp&lt;/option&gt;\n&lt;option value=\"hp\"&gt;hp&lt;/option&gt;\n&lt;option value=\"drat\"&gt;drat&lt;/option&gt;\n&lt;option value=\"wt\"&gt;wt&lt;/option&gt;\n&lt;option value=\"qsec\"&gt;qsec&lt;/option&gt;\n&lt;option value=\"vs\"&gt;vs&lt;/option&gt;\n&lt;option value=\"am\"&gt;am&lt;/option&gt;\n&lt;option value=\"gear\"&gt;gear&lt;/option&gt;\n&lt;option value=\"carb\"&gt;carb&lt;/option&gt;&lt;/select&gt;\n    &lt;script type=\"application/json\" data-for=\"select\" data-nonempty=\"\"&gt;{\"plugins\":[\"selectize-plugin-a11y\"]}&lt;/script&gt;\n  &lt;/div&gt;\n&lt;/div&gt;\n\n\nYou don’t need to write any HTML, CSS and JS (but you could 😈)"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#ui-inputs",
+    "href": "sessions/1_shiny/index.html#ui-inputs",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "UI: inputs",
+    "text": "UI: inputs\n\n\nUI: Create elements with an unique inputId, variable.\nServer: recover its value within input[[\"variable\"]] or input$variable.\n\ninput is readonly."
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#initialize-interactivity-with-inputs",
+    "href": "sessions/1_shiny/index.html#initialize-interactivity-with-inputs",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Initialize interactivity with inputs",
+    "text": "Initialize interactivity with inputs\n :::{.incremental}\n\nUI: Create elements with an unique inputId, variable.\nServer: recover its value within input[[\"variable\"]] or input$variable.\n\ninput is readonly.\n\n:::"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#render-output-elements",
+    "href": "sessions/1_shiny/index.html#render-output-elements",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Render output elements",
+    "text": "Render output elements\n\n\n\nUse a suitable renderer: renderTable, renderPlot, …\nAssign unique outputId: data.\nRecover output on the UI (IDs must match!): tableOutput, plotOutput, …\n\noutput is readonly."
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#intermediate-results-with-reactive-expressions",
+    "href": "sessions/1_shiny/index.html#intermediate-results-with-reactive-expressions",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Intermediate results with reactive expressions",
+    "text": "Intermediate results with reactive expressions\n\n\n\nReturn values.\nTake dependencies on anything reactive inside (input, other reactives).\nNo side effects! (write.csv, …).\n\nLazy: don’t run if not used.\n\ncached: don’t recompute."
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#overview-of-the-reactive-graph",
+    "href": "sessions/1_shiny/index.html#overview-of-the-reactive-graph",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Overview of the reactive graph",
+    "text": "Overview of the reactive graph"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#reactive-graph-example",
+    "href": "sessions/1_shiny/index.html#reactive-graph-example",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Reactive graph example",
+    "text": "Reactive graph example"
   }
 ]
