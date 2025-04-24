@@ -155,7 +155,7 @@ mtcars_demo_code <- paste0(
 
 ## I get a pretty cool local R program ...
 
-![](../../assets/images/1_shiny/sad.svg){width=50% fig-align="center"}
+![](../../assets/images/1_shiny/sad.svg){width="50%" fig-align="center"}
 
 ... But nobody can use it.
 
@@ -163,7 +163,7 @@ mtcars_demo_code <- paste0(
 
 ![](../../assets/images/1_shiny/hard.svg){fig-align="center"}
 
-- Sure, you just need to convert R to web languages (HTML, CSS, JS).
+-   Sure, you just need to convert R to web languages (HTML, CSS, JS).
 
 ## Isn't there an easier way for R developers?
 
@@ -171,23 +171,19 @@ mtcars_demo_code <- paste0(
 
 ## Welcome Shiny?
 
-::::{.columns}
-:::{.column}
-
+::::: columns
+::: column
 ![](../../assets/images/1_shiny/shiny.svg){width="50%" fig-align="center"}
-
 :::
 
-:::{.column}
-
-- Make web development __accessible__ to R people.
-- Unleash programs __interactivity__.
-- __Point and click__ data Science.
-
+::: column
+-   Make web development **accessible** to R people.
+-   Unleash programs **interactivity**.
+-   **Point and click** data Science.
 :::
-::::
+:::::
 
-## How does a Shiny app looks? 
+## How does a Shiny app looks?
 
 ```{r shinylive_iframe_app, echo = FALSE, out.width = '150%', out.extra = 'style = "position: relative; z-index:1"', eval=TRUE}
 knitr::include_url(roxy.shinylive::create_shinylive_url(shiny_demo_code, header = FALSE), height = "800px")
@@ -209,20 +205,21 @@ knitr::include_url(roxy.shinylive::create_shinylive_url(shiny_demo_code, mode = 
 shiny::selectInput("select", "Select", colnames(mtcars))
 ```
 
+<br/>
+
 ```{r}
 cat(as.character(shiny::selectInput("select", "Select", colnames(mtcars))))
 ```
 
-You don't need to write any HTML, CSS and JS (but you could 😈)
+You don't need to write any HTML, CSS and JS (but you could 😈...)
 
 ## Initialize interactivity with inputs
 
-![](../../assets/images/1_shiny/inputs.png){fig-align="center"}
-:::{.incremental}
+![](../../assets/images/1_shiny/inputs.png){fig-align="center"} ::: {.incremental}
 
-- UI: Create elements with an __unique__ `inputId`, `variable`.
-- Server: recover its value within `input[["variable"]]` or `input$variable`.
-- `input` is __readonly__.
+-   UI: create elements with an **unique** `inputId`, `variable`.
+-   Server: recover its value within `input[["variable"]]` or `input$variable`.
+-   `input` is **read only**.
 
 :::
 
@@ -230,27 +227,23 @@ You don't need to write any HTML, CSS and JS (but you could 😈)
 
 ![](../../assets/images/1_shiny/outputs.png){fig-align="center"}
 
-:::{.incremental}
-
-- Use a suitable __renderer__: `renderTable`, `renderPlot`, ...
-- Assign unique __outputId__: `data`.
-- Recover output on the UI (IDs must match!): `tableOutput`, `plotOutput`, ...
-- `output` is __readonly__.
-
+::: incremental
+-   Use a suitable **renderer**: `renderTable`, `renderPlot`, ...
+-   Assign unique **outputId**: `data`.
+-   Recover output on the UI (IDs must match!): `tableOutput`, `plotOutput`, ...
+-   `output` is **readonly**.
 :::
 
 ## Intermediate results with reactive expressions
 
-![](../../assets/images/1_shiny/reactive.png){width=75% fig-align="center"}
+![](../../assets/images/1_shiny/reactive.png){fig-align="center"}
 
-:::{.incremental}
-
-- Return values.
-- Take dependencies on anything __reactive__ inside (input, other reactives).
-- No side effects! (write.csv, ...).
-- __Lazy__: don't run if not used.
-- __cached__: don't recompute.
-
+::: incremental
+-   **Return** values.
+-   Take **dependencies** on anything **reactive** inside (input, other reactives).
+-   No side effects! (write.csv, ...).
+-   **Lazy**: don't run if not used.
+-   **cached**: only recompute when needed.
 :::
 
 ## Overview of the reactive graph
@@ -262,3 +255,33 @@ You don't need to write any HTML, CSS and JS (but you could 😈)
 ```{r shinylive_iframe_mtcars, echo = FALSE, out.width = '150%', out.extra = 'style = "position: relative; z-index:1"', eval=TRUE}
 knitr::include_url(roxy.shinylive::create_shinylive_url(mtcars_demo_code, header = FALSE), height = "800px")
 ```
+
+::: notes
+Speaker notes go here.
+:::
+
+## Your turn
+
+![](../../assets/images/1_shiny/practice.svg){width="50%" fig-align="center"}
+
+## Adjustement of logistic model (Verhulst)
+
+We consider the logistic model used to describe population growth.
+
+$$
+\frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right)
+$$
+whose solution is given by:
+
+$$
+N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right) e^{-rt}}
+$$
+Where:
+
+- `N(t)` is the population size at time `t`.
+- `K` is the carrying capacity.
+- `r` is the intrinsic growth rate.
+- $N_0$ is the initial population size at time `t=0`.
+
+
+## Complete Exercise 1

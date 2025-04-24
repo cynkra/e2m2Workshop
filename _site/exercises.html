@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="David Granjon (cynkra GmbH)">
 
-<title>Dynamic data analysis with Shiny – Data Analysis and Reporting with Shiny and Quarto</title>
+<title>Exercises – Data Analysis and Reporting with Shiny and Quarto</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,22 +57,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-d801ec56ef41a5df713aa3b4cba1a403.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d801ec56ef41a5df713aa3b4cba1a403.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -102,37 +101,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -142,10 +112,10 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../.././assets/images/cynkra.svg" alt="" class="navbar-logo">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="././assets/images/cynkra.svg" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Data Analysis and Reporting with Shiny and Quarto</span>
     </a>
   </div>
@@ -156,11 +126,11 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../exercises.html"> 
-<span class="menu-text">exercises</span></a>
+    <a class="nav-link active" href="./exercises.html" aria-current="page"> 
+<span class="menu-text">Exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">Your instructors</span></a>
   </li>  
 </ul>
@@ -174,48 +144,21 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#i-get-a-pretty-cool-local-r-program" id="toc-i-get-a-pretty-cool-local-r-program" class="nav-link active" data-scroll-target="#i-get-a-pretty-cool-local-r-program">I get a pretty cool local R program …</a></li>
-  <li><a href="#but-wait-web-applications-exist-for-a-long-time." id="toc-but-wait-web-applications-exist-for-a-long-time." class="nav-link" data-scroll-target="#but-wait-web-applications-exist-for-a-long-time.">But wait … web applications exist for a long time.</a></li>
-  <li><a href="#isnt-there-an-easier-way-for-r-developers" id="toc-isnt-there-an-easier-way-for-r-developers" class="nav-link" data-scroll-target="#isnt-there-an-easier-way-for-r-developers">Isn’t there an easier way for R developers?</a></li>
-  <li><a href="#welcome-shiny" id="toc-welcome-shiny" class="nav-link" data-scroll-target="#welcome-shiny">Welcome Shiny?</a></li>
-  <li><a href="#how-does-a-shiny-app-looks" id="toc-how-does-a-shiny-app-looks" class="nav-link" data-scroll-target="#how-does-a-shiny-app-looks">How does a Shiny app looks?</a></li>
-  <li><a href="#is-the-code-complex" id="toc-is-the-code-complex" class="nav-link" data-scroll-target="#is-the-code-complex">Is the code complex?</a></li>
-  <li><a href="#anatomy-of-a-shiny-app" id="toc-anatomy-of-a-shiny-app" class="nav-link" data-scroll-target="#anatomy-of-a-shiny-app">Anatomy of a Shiny app</a></li>
-  <li><a href="#ui-shiny-is-able-to-produce-html-from-r" id="toc-ui-shiny-is-able-to-produce-html-from-r" class="nav-link" data-scroll-target="#ui-shiny-is-able-to-produce-html-from-r">UI: shiny is able to produce HTML from R!</a></li>
-  <li><a href="#initialize-interactivity-with-inputs" id="toc-initialize-interactivity-with-inputs" class="nav-link" data-scroll-target="#initialize-interactivity-with-inputs">Initialize interactivity with inputs</a></li>
-  <li><a href="#render-output-elements" id="toc-render-output-elements" class="nav-link" data-scroll-target="#render-output-elements">Render output elements</a></li>
-  <li><a href="#intermediate-results-with-reactive-expressions" id="toc-intermediate-results-with-reactive-expressions" class="nav-link" data-scroll-target="#intermediate-results-with-reactive-expressions">Intermediate results with reactive expressions</a></li>
-  <li><a href="#overview-of-the-reactive-graph" id="toc-overview-of-the-reactive-graph" class="nav-link" data-scroll-target="#overview-of-the-reactive-graph">Overview of the reactive graph</a></li>
-  <li><a href="#reactive-graph-example" id="toc-reactive-graph-example" class="nav-link" data-scroll-target="#reactive-graph-example">Reactive graph example</a></li>
-  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your turn</a></li>
-  <li><a href="#adjustement-of-logistic-model-verhulst" id="toc-adjustement-of-logistic-model-verhulst" class="nav-link" data-scroll-target="#adjustement-of-logistic-model-verhulst">Adjustement of logistic model (Verhulst)</a></li>
-  <li><a href="#complete-exercise-1" id="toc-complete-exercise-1" class="nav-link" data-scroll-target="#complete-exercise-1">Complete Exercise 1</a></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Dynamic data analysis with Shiny</h1>
+<h1 class="title">Exercises</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>David Granjon (cynkra GmbH) </p>
-          </div>
-  </div>
     
   
     
@@ -226,194 +169,79 @@ window.Quarto = {
 </header>
 
 
-<section id="i-get-a-pretty-cool-local-r-program" class="level2">
-<h2 class="anchored" data-anchor-id="i-get-a-pretty-cool-local-r-program">I get a pretty cool local R program …</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/1_shiny/sad.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-<p>… But nobody can use it.</p>
-</section>
-<section id="but-wait-web-applications-exist-for-a-long-time." class="level2">
-<h2 class="anchored" data-anchor-id="but-wait-web-applications-exist-for-a-long-time.">But wait … web applications exist for a long time.</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/1_shiny/hard.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<ul>
-<li>Sure, you just need to convert R to web languages (HTML, CSS, JS).</li>
-</ul>
-</section>
-<section id="isnt-there-an-easier-way-for-r-developers" class="level2">
-<h2 class="anchored" data-anchor-id="isnt-there-an-easier-way-for-r-developers">Isn’t there an easier way for R developers?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/1_shiny/surprise.svg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="welcome-shiny" class="level2">
-<h2 class="anchored" data-anchor-id="welcome-shiny">Welcome Shiny?</h2>
-<div class="columns">
-<div class="column">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/1_shiny/shiny.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-</div><div class="column">
-<ul>
-<li>Make web development <strong>accessible</strong> to R people.</li>
-<li>Unleash programs <strong>interactivity</strong>.</li>
-<li><strong>Point and click</strong> data Science.</li>
-</ul>
-</div>
-</div>
-</section>
-<section id="how-does-a-shiny-app-looks" class="level2">
-<h2 class="anchored" data-anchor-id="how-does-a-shiny-app-looks">How does a Shiny app looks?</h2>
+<details open="true">
+<summary>
+Exercises 1: logistic model
+</summary>
+<p>Goal: convert the code located at <code>./assets/1_shiny/logistic/verhulst.R</code> into a Shiny app.</p>
 <div class="cell">
-<iframe src="https://shinylive.io/r/app/#h=0&amp;code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw71OY4aIbM27ACapqrRrLEKOAcx2qipAEyb5E9noCiAD1LNZI1BR0BXPpwD6BTgDcABAA8ALR+QmDcpKSonIgA9LHMAO4YOrSk3C70LpxwjMRkFKQYxDCxAFYE3M4ArLGctDCqcE4Qru7YsTBQfLEtbRCcxb5hIiJKAGaBIYxwUEqMiIgzc16+7H1uA6s+sgDEfgBifEp+nJk5pH5Ek8TULjADfulQlyxwp26kUPTU7+NEjFOBBe5EBBlIY3GHgg9ymfgmfgAPgA+U5wX4EUjsRJVGbsWiDGHwRi0AgCXB+IIATVmGlGMNocNQUB0cA89SUcHoLHYIj8p1onO5gIAvAKhTy+fy-D4WABldFwTEASQgqBcWLC1lljDCFLCAA0ZSxaN9fnr4VCiRSchjyCcxWEAEK0ajUPwAGWc6T87BgMGEYHJUv5OoVdtV6s1YFYOotYSpxpJZrgFom0PuNsVmLgDtCYBdbr8ABFmj6-QGwsGINK-JUlQBrehEawAcUYRBcqEjGt5Ndr+c4TgItDgnD1IelYSO1FBfnorFOw9H47wk-5lSIpLHfjFLggtAAji44MpxgASOXLsfVgdou253d+fdHk9ny-XziyWu36XcRjsOSfj7AAgkoJxQH43AArQABeJBfO6jAuOa-YblUBBNi2PbRgu7KfvGYBytBiRLkqK4WgAKlgACqli-uhjbNtYOG8mAPBEIkHhdIwqQDIRxGcX4PF8VA7rgquFLUXRDF1hhWEsWqvZhJwMBEIY3CEWBJyqep6S5FWuBSr+4IAPIalGbGcMCkQGUGIgOAMuQ+LkcLjPumK0CQ+JKaQFKdlEGpZpw9QkAIfggFKZxSHAtknMEfjLJ5LnsJFaGJXAh4+VG55DuRN6TgiKJ+OMrqguwV75ZwfgAKR8DVfh8DleUjgV-YAL6OfyAXNTZc4JTMECcowAAK1CGH2tZpXeqBwno4JcOcsX2oBFJQGO7AAISbU1GrntqLAUttu2kOesYsAI4UANTrtKdCcJq6V3vp8DsL8rJDRgqBEPUpBeTWjpgM2kREDAhm3bWtCTNle14S1K7hetnDsLcAJPpVrVfkZT0DqyoMeN9fBYrJd5Q76J25WpGnhXjMDslT6SARDfhdQOZMw6dHFcSJ7jhdNd7CSwfEeKQrBOHC7MU3Dn7hWEnIDGkrBhH46I5PmvAPUQOjMGDYDM7NCVWLYzCLHoACyQt8GJk0C-yqDY7b-Ki+LYo8xAIti3ADuO271WA8Dmlrjjtb1LB7xigAHN7tva52qAAMJEONLiio1vnntLVXRwLsddjO7pilLrD4VVzPfgO7X0jNk7tdnMx+34ACMAAMzfGSIlcQCIPB8KwIHoOwbhZowLkaGA7UALpAA" width="150%" height="800px" data-external="1" style="position: relative; z-index:1">
-</iframe>
-</div>
-</section>
-<section id="is-the-code-complex" class="level2">
-<h2 class="anchored" data-anchor-id="is-the-code-complex">Is the code complex?</h2>
-<div class="cell">
-<iframe src="https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw71OY4aIbM27ACapqrRrLEKOAcx2qipAEyb5E9noCiAD1LNZI1BR0BXPpwD6BTgDcABAA8ALR+QmDcpKSonIgA9LHMAO4YOrSk3C70LpxwjMRkFKQYxDCxAFYE3M4ArLGctDCqcE4Qru7YsTBQfLEtbRCcxb5hIiJKAGaBIYxwUEqMiIgzc16+7H1uA6s+sgDEfgBifEp+nJk5pH5Ek8TULjADfulQlyxwp26kUPTU7+NEjFOBBe5EBBlIY3GHgg9ymfgmfgAPgA+U5wX4EUjsRJVGbsWiDGHwRi0AgCXB+IIATVmGlGMNocNQUB0cA89SUcHoLHYIj8p1onO5gIAvAKhTy+fy-D4WABldFwTEASQgqBcWLC1lljDCFLCAA0ZSxaN9fnr4VCiRSchjyCcxWEAEK0ajUPwAGWc6T87BgMGEYHJUv5OoVdtV6s1YFYOotYSpxpJZrgFom0PuNsVmLgDtCYBdbr8ABFmj6-QGwsGINK-JUlQBrehEawAcUYRBcqEjGt5Ndr+c4TgItDgnD1IelYSO1FBfnorFOw9H47wk-5lSIpLHfjFLggtAAji44MpxgASOXLsfVgdou253d+fdHk9ny-XziyWu36XcRjsOSfj7AAgkoJxQH43AArQABeJBfO6jAuOa-YblUBBNi2PbRgu7KfvGYBytBiRLkqK4WgAKlgACqli-uhjbNtYOG8mAPBEIkHhdIwqQDIRxGcX4PF8VA7rgquFLUXRDF1hhWEsWqvZhJwMBEIY3CEWBJyqep6S5FWuBSr+4IAPIalGbGcMCkQGUGIgOAMuQ+LkcLjPumK0CQ+JKaQFKdlEGpZpw9QkAIfggFKZxSHAtknMEfjLJ5LnsJFaGJXAh4+VG55DuRN6TgiKJ+OMrqguwV75ZwfgAKR8DVfh8DleUjgV-YAL6OfyAXNTZc4JTMECcowAAK1CGH2tZpXeqBwno4JcOcsX2oBFJQGO7AAISbU1GrntqLAUttu2kOesYsAI4UANTrtKdCcJq6V3vp8DsL8rJDRgqBEPUpBeTWjpgM2kREDAhm3bWtCTNle14S1K7hetnDsLcAJPpVrVfkZT0DqyoMeN9fBYrJd5Q76J25WpGnhXjMDslT6SARDfhdQOZMw6dHFcSJ7jhdNd7CSwfEeKQrBOHC7MU3Dn7hWEnIDGkrBhH46I5PmvAPUQOjMGDYDM7NCVWLYzCLHoACyQt8GJk0C-yqDY7b-Ki+LYo8xAIti3ADuO271WA8Dmlrjjtb1LB7xigAHN7tva52qAAMJEONLiio1vnntLVXRwLsddjO7pilLrD4VVzPfgO7X0jNk7tdnMx+34ACMAAMzfGSIlcQCIPB8KwIHoOwbhZowLkaGA7UALpAA" width="150%" height="800px" data-external="1" style="position: relative; z-index:1">
-</iframe>
-</div>
-</section>
-<section id="anatomy-of-a-shiny-app" class="level2">
-<h2 class="anchored" data-anchor-id="anatomy-of-a-shiny-app">Anatomy of a Shiny app</h2>
-<div class="quarto-figure quarto-figure-center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read and transform data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>ver <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"http://pbil.univ-lyon1.fr/R/donnees/VerhulstPF1847.txt"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">sep =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">obs =</span> obs <span class="sc">/</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="at">theo =</span> theo <span class="sc">/</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">&lt;-</span> ver<span class="sc">$</span>t[<span class="dv">1</span>]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>N0 <span class="ot">&lt;-</span> ver<span class="sc">$</span>obs[<span class="dv">1</span>]</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Model equations</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>logistic <span class="ot">&lt;-</span> <span class="cf">function</span>(t, p) {</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">as.list</span>(p), {</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    K <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> ((K <span class="sc">-</span> N0)<span class="sc">/</span>N0) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>r<span class="sc">*</span>(t<span class="sc">-</span>t0)))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimize</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>sce <span class="ot">&lt;-</span> <span class="cf">function</span>(p) {</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  theo <span class="ot">&lt;-</span> <span class="fu">sapply</span>(ver<span class="sc">$</span>t, logistic, <span class="at">p =</span> <span class="fu">setNames</span>(p, <span class="fu">c</span>(<span class="st">"r"</span>, <span class="st">"K"</span>)))</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sum</span>((ver<span class="sc">$</span>obs <span class="sc">-</span> theo)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit: K = 5 means 5 millions people max (*10^6)</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>nlmfit <span class="ot">&lt;-</span> <span class="fu">nlm</span>(<span class="at">f =</span> sce, <span class="at">p =</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="dv">5</span>))</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate model with predicted coefficients</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>tseq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1800</span>, <span class="at">to =</span> <span class="dv">2000</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">t =</span> tseq,</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">logistic</span>(tseq, <span class="at">p =</span> <span class="fu">setNames</span>(nlmfit<span class="sc">$</span>estimate, <span class="fu">c</span>(<span class="st">"r"</span>, <span class="st">"K"</span>)))</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Add linear model alternative</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>lm_coef <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(ver<span class="sc">$</span>obs <span class="sc">~</span> ver<span class="sc">$</span>t))</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot everything</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> res) <span class="sc">+</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> t, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> ver,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> t, <span class="at">y =</span> obs), <span class="at">color =</span> <span class="st">"lightblue"</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">slope =</span> lm_coef[<span class="dv">2</span>],</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">intercept =</span> lm_coef[<span class="dv">1</span>],</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"pink"</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Population in million"</span>,</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Population growth in belgium"</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
 <figure class="figure">
-<p><img src="../../assets/images/1_shiny/anatomy.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+<p><img src="exercises_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
-</section>
-<section id="ui-shiny-is-able-to-produce-html-from-r" class="level2">
-<h2 class="anchored" data-anchor-id="ui-shiny-is-able-to-produce-html-from-r">UI: shiny is able to produce HTML from R!</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">selectInput</span>(<span class="st">"select"</span>, <span class="st">"Select"</span>, <span class="fu">colnames</span>(mtcars))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">as.character</span>(shiny<span class="sc">::</span><span class="fu">selectInput</span>(<span class="st">"select"</span>, <span class="st">"Select"</span>, <span class="fu">colnames</span>(mtcars))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;div class="form-group shiny-input-container"&gt;
-  &lt;label class="control-label" id="select-label" for="select"&gt;Select&lt;/label&gt;
-  &lt;div&gt;
-    &lt;select id="select" class="shiny-input-select"&gt;&lt;option value="mpg" selected&gt;mpg&lt;/option&gt;
-&lt;option value="cyl"&gt;cyl&lt;/option&gt;
-&lt;option value="disp"&gt;disp&lt;/option&gt;
-&lt;option value="hp"&gt;hp&lt;/option&gt;
-&lt;option value="drat"&gt;drat&lt;/option&gt;
-&lt;option value="wt"&gt;wt&lt;/option&gt;
-&lt;option value="qsec"&gt;qsec&lt;/option&gt;
-&lt;option value="vs"&gt;vs&lt;/option&gt;
-&lt;option value="am"&gt;am&lt;/option&gt;
-&lt;option value="gear"&gt;gear&lt;/option&gt;
-&lt;option value="carb"&gt;carb&lt;/option&gt;&lt;/select&gt;
-    &lt;script type="application/json" data-for="select" data-nonempty=""&gt;{"plugins":["selectize-plugin-a11y"]}&lt;/script&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
 </div>
 </div>
-<p>You don’t need to write any HTML, CSS and JS (but you could 😈…)</p>
-</section>
-<section id="initialize-interactivity-with-inputs" class="level2">
-<h2 class="anchored" data-anchor-id="initialize-interactivity-with-inputs">Initialize interactivity with inputs</h2>
-<p><img src="../../assets/images/1_shiny/inputs.png" class="img-fluid quarto-figure quarto-figure-center"> ::: {.incremental}</p>
-<ul>
-<li>UI: create elements with an <strong>unique</strong> <code>inputId</code>, <code>variable</code>.</li>
-<li>Server: recover its value within <code>input[["variable"]]</code> or <code>input$variable</code>.</li>
-<li><code>input</code> is <strong>read only</strong>.</li>
-</ul>
-<p>:::</p>
-</section>
-<section id="render-output-elements" class="level2">
-<h2 class="anchored" data-anchor-id="render-output-elements">Render output elements</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/1_shiny/outputs.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<div class="incremental">
-<ul class="incremental">
-<li>Use a suitable <strong>renderer</strong>: <code>renderTable</code>, <code>renderPlot</code>, …</li>
-<li>Assign unique <strong>outputId</strong>: <code>data</code>.</li>
-<li>Recover output on the UI (IDs must match!): <code>tableOutput</code>, <code>plotOutput</code>, …</li>
-<li><code>output</code> is <strong>readonly</strong>.</li>
-</ul>
-</div>
-</section>
-<section id="intermediate-results-with-reactive-expressions" class="level2">
-<h2 class="anchored" data-anchor-id="intermediate-results-with-reactive-expressions">Intermediate results with reactive expressions</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/1_shiny/reactive.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<div class="incremental">
-<ul class="incremental">
-<li><strong>Return</strong> values.</li>
-<li>Take <strong>dependencies</strong> on anything <strong>reactive</strong> inside (input, other reactives).</li>
-<li>No side effects! (write.csv, …).</li>
-<li><strong>Lazy</strong>: don’t run if not used.</li>
-<li><strong>cached</strong>: only recompute when needed.</li>
-</ul>
-</div>
-</section>
-<section id="overview-of-the-reactive-graph" class="level2">
-<h2 class="anchored" data-anchor-id="overview-of-the-reactive-graph">Overview of the reactive graph</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/1_shiny/reactive-graph.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-</section>
-<section id="reactive-graph-example" class="level2">
-<h2 class="anchored" data-anchor-id="reactive-graph-example">Reactive graph example</h2>
-<div class="cell">
-<iframe src="https://shinylive.io/r/app/#h=0&amp;code=NobwRAdghgtgpmAXGKAHVA6ASmANGAYwHsIAXOMpMAGwEsAjAJykYE8AKAZwAtaJWAlAB0IdJiw4BzSampFSAJmEQRjOFAKk5kxIjUatRSQH0KUetTjtlIgK60ABAB4AtA4Bm1ewBMAClEkrEQcHfU1tXTDDExgib1tLY3trXGCHb1oAN3Y0kM5SVksHAF4HITBM2k4GWjoCxAdeb28KctSIELy4S00ASQhUW1Icjs6Q8syWWnNLNrKwADUpmbhENtzO4mpoeE52GFICFk4BdrGunvJvEocCHLAAR044Ajny7lQ3wkLy042QmAJUi0WRwG4AFSwAFUAKIbP6jEKkFYAeSGg2G5W8UGRvzOnVk8jRpAx90JpF+aWUNggz0YmTgjGcbnctggmloJHYfAxuAcRHRQz5z041RIAgcIDSaSiET06nCRmMsXiiTpDMY1mlozUnGZoQVwIZ7CliIcByOjE4wD5d3KMFQkjmPKGABJJoxphY4Kd0owiKgbgAxACCABkAMowgC6aQAvspxqMBSS3djkfq1BAWoxwSsTRtuOpvOxddZEw443z-QB3HZwPWlSGwitpFMY13kzMUHO+OTDU1jaTk9jpqA3MsCCUAan+DkCRBgxlQRD4wxgaFQfEkNygDfYAA8bh8+awbk8XlP48o4yIRDw+KwQ+h2PZhYyNQIwHHo0A" width="150%" height="800px" data-external="1" style="position: relative; z-index:1">
-</iframe>
-</div>
-<div class="notes">
-<p>Speaker notes go here.</p>
-</div>
-</section>
-<section id="your-turn" class="level2">
-<h2 class="anchored" data-anchor-id="your-turn">Your turn</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../assets/images/1_shiny/practice.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
-</figure>
-</div>
-</section>
-<section id="adjustement-of-logistic-model-verhulst" class="level2">
-<h2 class="anchored" data-anchor-id="adjustement-of-logistic-model-verhulst">Adjustement of logistic model (Verhulst)</h2>
-<p>We consider the logistic model used to describe population growth.</p>
-<p><span class="math display">\[
-\frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right)
-\]</span> whose solution is given by:</p>
-<p><span class="math display">\[
-N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right) e^{-rt}}
-\]</span> Where:</p>
-<ul>
-<li><code>N(t)</code> is the population size at time <code>t</code>.</li>
-<li><code>K</code> is the carrying capacity.</li>
-<li><code>r</code> is the intrinsic growth rate.</li>
-<li><span class="math inline">\(N_0\)</span> is the initial population size at time <code>t=0</code>.</li>
-</ul>
-</section>
-<section id="complete-exercise-1" class="level2">
-<h2 class="anchored" data-anchor-id="complete-exercise-1">Complete Exercise 1</h2>
+</details>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

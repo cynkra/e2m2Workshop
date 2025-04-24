@@ -10,15 +10,15 @@
     "objectID": "sessions/1_shiny/index.html#i-get-a-pretty-cool-local-r-program",
     "href": "sessions/1_shiny/index.html#i-get-a-pretty-cool-local-r-program",
     "title": "Dynamic data analysis with Shiny",
-    "section": "I get a pretty cool local R program …",
-    "text": "I get a pretty cool local R program …\n\n… But nobody can use it."
+    "section": "",
+    "text": "… But nobody can use it."
   },
   {
     "objectID": "sessions/1_shiny/index.html#but-wait-web-applications-exist-for-a-long-time.",
     "href": "sessions/1_shiny/index.html#but-wait-web-applications-exist-for-a-long-time.",
     "title": "Dynamic data analysis with Shiny",
     "section": "But wait … web applications exist for a long time.",
-    "text": "But wait … web applications exist for a long time.\n\n\nSure, you just need to convert R to web languages (HTML, CSS, JS)."
+    "text": "But wait … web applications exist for a long time.\n\n\n\n\n\n\nSure, you just need to convert R to web languages (HTML, CSS, JS)."
   },
   {
     "objectID": "sessions/1_shiny/index.html#isnt-there-an-easier-way-for-r-developers",
@@ -32,7 +32,7 @@
     "href": "sessions/1_shiny/index.html#welcome-shiny",
     "title": "Dynamic data analysis with Shiny",
     "section": "Welcome Shiny?",
-    "text": "Welcome Shiny?\n\n\n\n\n\n\n\n\nMake web development accessible to R people.\nUnleash programs interactivity.\n\nPoint and click data Science."
+    "text": "Welcome Shiny?\n\n\n\n\n\n\n\n\n\nMake web development accessible to R people.\nUnleash programs interactivity.\nPoint and click data Science."
   },
   {
     "objectID": "sessions/1_shiny/index.html#how-does-a-shiny-app-code-looks",
@@ -165,7 +165,7 @@
     "href": "sessions/1_shiny/index.html#ui-shiny-is-able-to-produce-html-from-r",
     "title": "Dynamic data analysis with Shiny",
     "section": "UI: shiny is able to produce HTML from R!",
-    "text": "UI: shiny is able to produce HTML from R!\n\nshiny::selectInput(\"select\", \"Select\", colnames(mtcars))\n\n\n\n&lt;div class=\"form-group shiny-input-container\"&gt;\n  &lt;label class=\"control-label\" id=\"select-label\" for=\"select\"&gt;Select&lt;/label&gt;\n  &lt;div&gt;\n    &lt;select id=\"select\" class=\"shiny-input-select\"&gt;&lt;option value=\"mpg\" selected&gt;mpg&lt;/option&gt;\n&lt;option value=\"cyl\"&gt;cyl&lt;/option&gt;\n&lt;option value=\"disp\"&gt;disp&lt;/option&gt;\n&lt;option value=\"hp\"&gt;hp&lt;/option&gt;\n&lt;option value=\"drat\"&gt;drat&lt;/option&gt;\n&lt;option value=\"wt\"&gt;wt&lt;/option&gt;\n&lt;option value=\"qsec\"&gt;qsec&lt;/option&gt;\n&lt;option value=\"vs\"&gt;vs&lt;/option&gt;\n&lt;option value=\"am\"&gt;am&lt;/option&gt;\n&lt;option value=\"gear\"&gt;gear&lt;/option&gt;\n&lt;option value=\"carb\"&gt;carb&lt;/option&gt;&lt;/select&gt;\n    &lt;script type=\"application/json\" data-for=\"select\" data-nonempty=\"\"&gt;{\"plugins\":[\"selectize-plugin-a11y\"]}&lt;/script&gt;\n  &lt;/div&gt;\n&lt;/div&gt;\n\n\nYou don’t need to write any HTML, CSS and JS (but you could 😈)"
+    "text": "UI: shiny is able to produce HTML from R!\n\nshiny::selectInput(\"select\", \"Select\", colnames(mtcars))\n\n\n\ncat(as.character(shiny::selectInput(\"select\", \"Select\", colnames(mtcars))))\n\n&lt;div class=\"form-group shiny-input-container\"&gt;\n  &lt;label class=\"control-label\" id=\"select-label\" for=\"select\"&gt;Select&lt;/label&gt;\n  &lt;div&gt;\n    &lt;select id=\"select\" class=\"shiny-input-select\"&gt;&lt;option value=\"mpg\" selected&gt;mpg&lt;/option&gt;\n&lt;option value=\"cyl\"&gt;cyl&lt;/option&gt;\n&lt;option value=\"disp\"&gt;disp&lt;/option&gt;\n&lt;option value=\"hp\"&gt;hp&lt;/option&gt;\n&lt;option value=\"drat\"&gt;drat&lt;/option&gt;\n&lt;option value=\"wt\"&gt;wt&lt;/option&gt;\n&lt;option value=\"qsec\"&gt;qsec&lt;/option&gt;\n&lt;option value=\"vs\"&gt;vs&lt;/option&gt;\n&lt;option value=\"am\"&gt;am&lt;/option&gt;\n&lt;option value=\"gear\"&gt;gear&lt;/option&gt;\n&lt;option value=\"carb\"&gt;carb&lt;/option&gt;&lt;/select&gt;\n    &lt;script type=\"application/json\" data-for=\"select\" data-nonempty=\"\"&gt;{\"plugins\":[\"selectize-plugin-a11y\"]}&lt;/script&gt;\n  &lt;/div&gt;\n&lt;/div&gt;\n\n\nYou don’t need to write any HTML, CSS and JS (but you could 😈…)"
   },
   {
     "objectID": "sessions/1_shiny/index.html#ui-inputs",
@@ -179,21 +179,21 @@
     "href": "sessions/1_shiny/index.html#initialize-interactivity-with-inputs",
     "title": "Dynamic data analysis with Shiny",
     "section": "Initialize interactivity with inputs",
-    "text": "Initialize interactivity with inputs\n :::{.incremental}\n\nUI: Create elements with an unique inputId, variable.\nServer: recover its value within input[[\"variable\"]] or input$variable.\n\ninput is readonly.\n\n:::"
+    "text": "Initialize interactivity with inputs\n ::: {.incremental}\n\nUI: create elements with an unique inputId, variable.\nServer: recover its value within input[[\"variable\"]] or input$variable.\ninput is read only.\n\n:::"
   },
   {
     "objectID": "sessions/1_shiny/index.html#render-output-elements",
     "href": "sessions/1_shiny/index.html#render-output-elements",
     "title": "Dynamic data analysis with Shiny",
     "section": "Render output elements",
-    "text": "Render output elements\n\n\n\nUse a suitable renderer: renderTable, renderPlot, …\nAssign unique outputId: data.\nRecover output on the UI (IDs must match!): tableOutput, plotOutput, …\n\noutput is readonly."
+    "text": "Render output elements\n\n\n\n\n\n\n\nUse a suitable renderer: renderTable, renderPlot, …\nAssign unique outputId: data.\nRecover output on the UI (IDs must match!): tableOutput, plotOutput, …\noutput is readonly."
   },
   {
     "objectID": "sessions/1_shiny/index.html#intermediate-results-with-reactive-expressions",
     "href": "sessions/1_shiny/index.html#intermediate-results-with-reactive-expressions",
     "title": "Dynamic data analysis with Shiny",
     "section": "Intermediate results with reactive expressions",
-    "text": "Intermediate results with reactive expressions\n\n\n\nReturn values.\nTake dependencies on anything reactive inside (input, other reactives).\nNo side effects! (write.csv, …).\n\nLazy: don’t run if not used.\n\ncached: don’t recompute."
+    "text": "Intermediate results with reactive expressions\n\n\n\n\n\n\n\nReturn values.\nTake dependencies on anything reactive inside (input, other reactives).\nNo side effects! (write.csv, …).\nLazy: don’t run if not used.\ncached: only recompute when needed."
   },
   {
     "objectID": "sessions/1_shiny/index.html#overview-of-the-reactive-graph",
@@ -207,6 +207,41 @@
     "href": "sessions/1_shiny/index.html#reactive-graph-example",
     "title": "Dynamic data analysis with Shiny",
     "section": "Reactive graph example",
-    "text": "Reactive graph example"
+    "text": "Reactive graph example\n\n\n\n\n\nSpeaker notes go here."
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#your-turn",
+    "href": "sessions/1_shiny/index.html#your-turn",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Your turn",
+    "text": "Your turn"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#adjustement-of-logistic-model-verhulst",
+    "href": "sessions/1_shiny/index.html#adjustement-of-logistic-model-verhulst",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Adjustement of logistic model (Verhulst)",
+    "text": "Adjustement of logistic model (Verhulst)\nWe consider the logistic model used to describe population growth.\n\\[\n\\frac{dN}{dt} = rN \\left( 1 - \\frac{N}{K} \\right)\n\\] whose solution is given by:\n\\[\nN(t) = \\frac{K}{1 + \\left(\\frac{K - N_0}{N_0}\\right) e^{-rt}}\n\\] Where:\n\nN(t) is the population size at time t.\nK is the carrying capacity.\nr is the intrinsic growth rate.\n\\(N_0\\) is the initial population size at time t=0."
+  },
+  {
+    "objectID": "exercises.html",
+    "href": "exercises.html",
+    "title": "Exercises",
+    "section": "",
+    "text": "Exercises 1: logistic model\n\nGoal: convert the code located at ./assets/1_shiny/logistic/verhulst.R into a Shiny app.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Read and transform data\nver &lt;- read.table(\n  \"http://pbil.univ-lyon1.fr/R/donnees/VerhulstPF1847.txt\",\n  sep = \"\\t\",\n  header = TRUE\n) |&gt; mutate(obs = obs / 10^6, theo = theo / 10^6)\n\nt0 &lt;- ver$t[1]\nN0 &lt;- ver$obs[1]\n\n# Model equations\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0)/N0) * exp(-r*(t-t0)))\n  })\n}\n\n# Minimize\nsce &lt;- function(p) {\n  theo &lt;- sapply(ver$t, logistic, p = setNames(p, c(\"r\", \"K\")))\n  return(sum((ver$obs - theo)^2))\n}\n\n# Fit: K = 5 means 5 millions people max (*10^6)\nnlmfit &lt;- nlm(f = sce, p = c(0.02, 5))\n\n# Calculate model with predicted coefficients\ntseq &lt;- seq(from = 1800, to = 2000, by = 1)\nres &lt;- data.frame(\n  t = tseq,\n  y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n)\n\n# Add linear model alternative\nlm_coef &lt;- coef(lm(ver$obs ~ ver$t))\n\n# Plot everything\nggplot(data = res) +\n  geom_line(mapping = aes(x = t, y = y)) +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs), color = \"lightblue\"\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"pink\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in belgium\"\n  )"
+  },
+  {
+    "objectID": "exercises.html#exercises-1-logistic-model",
+    "href": "exercises.html#exercises-1-logistic-model",
+    "title": "Exercises",
+    "section": "",
+    "text": "Goal: convert the code located at ./assets/1_shiny/logistic/verhulst.R into a Shiny app.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Read and transform data\nver &lt;- read.table(\n  \"http://pbil.univ-lyon1.fr/R/donnees/VerhulstPF1847.txt\",\n  sep = \"\\t\",\n  header = TRUE\n) |&gt; mutate(obs = obs / 10^6, theo = theo / 10^6)\n\nt0 &lt;- ver$t[1]\nN0 &lt;- ver$obs[1]\n\n# Model equations\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0)/N0) * exp(-r*(t-t0)))\n  })\n}\n\n# Minimize\nsce &lt;- function(p) {\n  theo &lt;- sapply(ver$t, logistic, p = setNames(p, c(\"r\", \"K\")))\n  return(sum((ver$obs - theo)^2))\n}\n\n# Fit: K = 5 means 5 millions people max (*10^6)\nnlmfit &lt;- nlm(f = sce, p = c(0.02, 5))\n\n# Calculate model with predicted coefficients\ntseq &lt;- seq(from = 1800, to = 2000, by = 1)\nres &lt;- data.frame(\n  t = tseq,\n  y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n)\n\n# Add linear model alternative\nlm_coef &lt;- coef(lm(ver$obs ~ ver$t))\n\n# Plot everything\nggplot(data = res) +\n  geom_line(mapping = aes(x = t, y = y)) +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs), color = \"lightblue\"\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"pink\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in belgium\"\n  )"
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#complete-exercise-1",
+    "href": "sessions/1_shiny/index.html#complete-exercise-1",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Complete Exercise 1",
+    "text": "Complete Exercise 1"
   }
 ]
