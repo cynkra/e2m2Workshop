@@ -19,8 +19,8 @@ logistic <- function(t, p) {
 
 # Minimize
 sce <- function(p) {
-  theo <- sapply(ver$t, logistic, p = setNames(p, c("r", "K")))
-  return(sum((ver$obs - theo)^2))
+  theo <- logistic(ver$t, p = setNames(p, c("r", "K")))
+  sum((ver$obs - theo)^2)
 }
 
 # Fit: K = 5 means 5 millions people max (*10^6)

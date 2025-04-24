@@ -32,8 +32,9 @@ logistic <- function(t, p) {
 
 # Minimize
 sce <- function(p) {
-  theo <- sapply(ver$t, logistic, p = setNames(p, c("r", "K")))
-  return(sum((ver$obs - theo)^2))
+  theo <- logistic(ver$t, p = setNames(p, c("r", "K")))
+  # Least squears
+  sum((ver$obs - theo)^2)
 }
 
 # Fit: K = 5 means 5 millions people max (*10^6)
@@ -67,4 +68,110 @@ ggplot(data = res) +
     title = "Population growth in belgium"
   )
 ```
+
+1. Create an `app.R` file with this template:
+
+```r
+library(shiny)
+
+ui <- fluidPage(
+  
+)
+
+server <- function(input, output, session) {
+  
+}
+
+shinyApp(ui, server)
+```
+2. Within the `ui` object, create 2 input widgets for `r` and `K` parameters. You can use `?shiny::numericInput` for guidance.
+3. Importantly, anything that isn't reactive can live outside the server function like the `logistic` function definition and other objects:
+
+```r
+logistic <- function(t, p) {
+  with(as.list(p), {
+    K / (1 + ((K - N0)/N0) * exp(-r*(t-t0)))
+  })
+}
+...
+```
+3. In the `server` object, create a reactive that calculate the predicted values by the logistic equation given the 2 UI input parameters (this isn't the adjusted model):
+
+```r
+res <- reactive({
+  # Calculate model with input parameter
+  data.frame(
+    t = tseq,
+    y = logistic(tseq, p = c(r = <INPUT_1>, K = <INPUT_2>)))
+  )
+})
+```
+4. In the `server` object use the `res` reactive expression to plot the data:
+
+```r
+# Replace TBD by what is relevant
+output$<TBD> <- render<TBD>({
+  ggplot(data = <TBD>) +
+  geom_line(mapping = aes(x = t, y = y)) +
+  geom_point(
+    data = ver,
+    mapping = aes(x = t, y = obs), color = "lightblue"
+  ) +
+  geom_abline(
+    slope = lm_coef[2],
+    intercept = lm_coef[1],
+    color = "pink"
+  ) +
+  labs(
+    x = "Year",
+    y = "Population in million",
+    title = "Population growth in belgium"
+  )
+})
+```
+Don't forget to add the corresponding `*Output` container in the ui part.
+
+5. Run the app and try to change `r` and `K`.
+
+6. Let's fit the model. Create another `reactive` expression that returns the best
+fit and corresponding predicted results:
+
+```r
+fit <- reactive({
+  # Replace <INPUT_1>, <INPUT_2> by what is defined in ui
+  nlmfit <- nlm(f = sce, p = c(<INPUT_1>, <INPUT_2>))
+
+  # Calculate model with predicted coefficients
+  data.frame(
+    t = tseq,
+    y = logistic(tseq, p = setNames(nlmfit$estimate, c("r", "K")))
+  )
+})
+```
+
+7. Modify the existing `output` to include the new fitted curve. Replace `<TBD>` by the relevant value:
+
+```r
+output$plot <- renderPlot({
+    ggplot(data = res()) +
+      geom_line(mapping = aes(x = t, y = y)) +
+      # Model fit curve
+      geom_line(data = <TBD>, mapping = aes(x = t, y = y), color = "lightgreen") +
+      geom_point(
+        data = ver,
+        mapping = aes(x = t, y = obs), color = "lightblue"
+      ) +
+      geom_abline(
+        slope = lm_coef[2],
+        intercept = lm_coef[1],
+        color = "pink"
+      ) +
+      labs(
+        x = "Year",
+        y = "Population in million",
+        title = "Population growth in belgium"
+      )
+  })
+```
+
 </details>
