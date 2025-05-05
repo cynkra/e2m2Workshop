@@ -337,12 +337,12 @@ N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right) e^{-rt}}
 <li>
 <span class="math inline">\(N_0\)</span> is the initial population size at time <code>t=0</code>.</li>
 </ul></section><section id="complete-exercise-1" class="slide level2"><h2>Complete Exercise 1</h2>
-<p>We define the following objective function, <span class="math inline">\(y_i\)</span> being the observed data and <span class="math inline">\(f(x_i, \beta)\)</span> the model predictions:</p>
+<p>We define the following objective function, <span class="math inline">\(y_i\)</span> being the observed data and <span class="math inline">\(f(x_i, \beta)\)</span> the model predictions given a set of parameters <span class="math inline">\(\beta\)</span>:</p>
 <p><span class="math display">\[
 S(\beta) = \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2
-\]</span> We want to minimize this:</p>
+\]</span> We want to minimize this ( represents the best parameters estimate):</p>
 <p><span class="math display">\[
-\hat{\beta} = \arg \min_{\beta} \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2
+\hat{\beta} = \arg \min_{\beta} S(\beta) =\arg \min_{\beta} \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2
 \]</span></p>
 
 

@@ -6,7 +6,8 @@ ver <- read.table(
   "http://pbil.univ-lyon1.fr/R/donnees/VerhulstPF1847.txt",
   sep = "\t",
   header = TRUE
-) |> mutate(obs = obs / 10^6, theo = theo / 10^6)
+) |>
+  mutate(obs = obs / 10^6, theo = theo / 10^6)
 
 t0 <- ver$t[1]
 N0 <- ver$obs[1]
@@ -14,7 +15,7 @@ N0 <- ver$obs[1]
 # Model equations
 logistic <- function(t, p) {
   with(as.list(p), {
-    K / (1 + ((K - N0)/N0) * exp(-r*(t-t0)))
+    K / (1 + ((K - N0) / N0) * exp(-r * (t - t0)))
   })
 }
 
@@ -55,15 +56,16 @@ server <- function(input, output, session) {
   output$plot <- renderPlot({
     ggplot(data = res()) +
       geom_line(mapping = aes(x = t, y = y)) +
-      geom_line(data = fit(), mapping = aes(x = t, y = y), color = "maroon") +
+      geom_line(data = fit(), mapping = aes(x = t, y = y), color = "red") +
       geom_point(
         data = ver,
-        mapping = aes(x = t, y = obs), color = "lightblue"
+        mapping = aes(x = t, y = obs)
       ) +
       geom_abline(
         slope = lm_coef[2],
         intercept = lm_coef[1],
-        color = "grey"
+        color = "grey",
+        linetype = "dashed"
       ) +
       labs(
         x = "Year",

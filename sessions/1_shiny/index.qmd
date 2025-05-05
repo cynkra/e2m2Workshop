@@ -286,12 +286,12 @@ Where:
 
 ## Complete Exercise 1
 
-We define the following objective function, $y_i$ being the observed data and $f(x_i, \beta)$ the model predictions:
+We define the following objective function, $y_i$ being the observed data and $f(x_i, \beta)$ the model predictions given a set of parameters $\beta$:
 
 $$
 S(\beta) = \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2
 $$
-We want to minimize this:
+We want to minimize this (\hat{\beta} represents the best parameters estimate):
 
 $$
 \hat{\beta} = \arg \min_{\beta} S(\beta) =\arg \min_{\beta} \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2

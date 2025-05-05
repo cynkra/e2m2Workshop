@@ -18,7 +18,8 @@ ver <- read.table(
   "http://pbil.univ-lyon1.fr/R/donnees/VerhulstPF1847.txt",
   sep = "\t",
   header = TRUE
-) |> mutate(obs = obs / 10^6, theo = theo / 10^6)
+) |>
+  mutate(obs = obs / 10^6, theo = theo / 10^6)
 
 t0 <- ver$t[1]
 N0 <- ver$obs[1]
@@ -26,7 +27,7 @@ N0 <- ver$obs[1]
 # Model equations
 logistic <- function(t, p) {
   with(as.list(p), {
-    K / (1 + ((K - N0)/N0) * exp(-r*(t-t0)))
+    K / (1 + ((K - N0) / N0) * exp(-r * (t - t0)))
   })
 }
 
@@ -52,20 +53,21 @@ lm_coef <- coef(lm(ver$obs ~ ver$t))
 
 # Plot everything
 ggplot(data = res) +
-  geom_line(mapping = aes(x = t, y = y)) +
+  geom_line(mapping = aes(x = t, y = y), color = "red") +
   geom_point(
     data = ver,
-    mapping = aes(x = t, y = obs), color = "lightblue"
+    mapping = aes(x = t, y = obs)
   ) +
   geom_abline(
     slope = lm_coef[2],
     intercept = lm_coef[1],
-    color = "pink"
+    color = "grey",
+    linetype = "dashed"
   ) +
   labs(
     x = "Year",
     y = "Population in million",
-    title = "Population growth in belgium"
+    title = "Population growth in Belgium"
   )
 ```
 
@@ -84,6 +86,7 @@ server <- function(input, output, session) {
 
 shinyApp(ui, server)
 ```
+
 2. Within the `ui` object, create 2 input widgets for `r` and `K` parameters. You can use `?shiny::numericInput` for guidance.
 3. Importantly, anything that isn't reactive can live outside the server function like the `logistic` function definition and other objects:
 
@@ -95,6 +98,7 @@ logistic <- function(t, p) {
 }
 ...
 ```
+
 3. In the `server` object, create a reactive that calculate the predicted values by the logistic equation given the 2 UI input parameters (this isn't the adjusted model):
 
 ```r
@@ -106,21 +110,23 @@ res <- reactive({
   )
 })
 ```
+
 4. In the `server` object use the `res` reactive expression to plot the data:
 
 ```r
 # Replace TBD by what is relevant
 output$<TBD> <- render<TBD>({
   ggplot(data = <TBD>) +
-  geom_line(mapping = aes(x = t, y = y)) +
+  geom_line(mapping = aes(x = t, y = y), color = "red") +
   geom_point(
     data = ver,
-    mapping = aes(x = t, y = obs), color = "lightblue"
+    mapping = aes(x = t, y = obs)
   ) +
   geom_abline(
     slope = lm_coef[2],
     intercept = lm_coef[1],
-    color = "pink"
+    color = "grey",
+    linetype = "dashed"
   ) +
   labs(
     x = "Year",
@@ -129,6 +135,7 @@ output$<TBD> <- render<TBD>({
   )
 })
 ```
+
 Don't forget to add the corresponding `*Output` container in the ui part.
 
 5. Run the app and try to change `r` and `K`.
@@ -156,15 +163,16 @@ output$plot <- renderPlot({
     ggplot(data = res()) +
       geom_line(mapping = aes(x = t, y = y)) +
       # Model fit curve
-      geom_line(data = <TBD>, mapping = aes(x = t, y = y), color = "lightgreen") +
+      geom_line(data = <TBD>, mapping = aes(x = t, y = y), color = "red") +
       geom_point(
         data = ver,
-        mapping = aes(x = t, y = obs), color = "lightblue"
+        mapping = aes(x = t, y = obs)
       ) +
       geom_abline(
         slope = lm_coef[2],
         intercept = lm_coef[1],
-        color = "pink"
+        color = "grey",
+        linetype = "dashed"
       ) +
       labs(
         x = "Year",

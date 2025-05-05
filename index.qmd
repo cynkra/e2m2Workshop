@@ -28,6 +28,7 @@ It is therefore not a Data Science workshop.
 
 
 ## Recommended readings:
+
 - Books:
   - [R packages](https://r-pkgs.org/).
   - [Mastering Shiny](https://mastering-shiny.org/).
