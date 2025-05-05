@@ -165,7 +165,7 @@
     "href": "sessions/1_shiny/index.html#intermediate-results-with-reactive-expressions",
     "title": "Dynamic data analysis with Shiny",
     "section": "Intermediate results with reactive expressions",
-    "text": "Intermediate results with reactive expressions\n\n\n\n\nReturn values.\nTake dependencies on anything reactive inside (input, other reactives).\nNo side effects! (write.csv, …).\n\nLazy: don’t run if not used.\n\ncached: only recompute when needed."
+    "text": "Intermediate results with reactive expressions\n\n\n\n\nReturn values.\nTake dependencies on anything reactive inside (input, other reactives).\nEvaluate with ().\nNo side effects! (write.csv, …).\n\nLazy and cached: don’t run if not used, only recompute when needed."
   },
   {
     "objectID": "sessions/1_shiny/index.html#overview-of-the-reactive-graph",
@@ -189,18 +189,25 @@
     "text": "Your turn"
   },
   {
-    "objectID": "sessions/1_shiny/index.html#adjustement-of-logistic-model-verhulst",
-    "href": "sessions/1_shiny/index.html#adjustement-of-logistic-model-verhulst",
+    "objectID": "sessions/1_shiny/index.html#exercise-1-adjustement-of-logistic-model-12",
+    "href": "sessions/1_shiny/index.html#exercise-1-adjustement-of-logistic-model-12",
     "title": "Dynamic data analysis with Shiny",
-    "section": "Adjustement of logistic model (Verhulst)",
-    "text": "Adjustement of logistic model (Verhulst)\nWe consider the logistic model used to describe population growth.\n\\[\n\\frac{dN}{dt} = rN \\left( 1 - \\frac{N}{K} \\right)\n\\] whose solution is given by:\n\\[\nN(t) = \\frac{K}{1 + \\left(\\frac{K - N_0}{N_0}\\right) e^{-rt}}\n\\] Where:\n\n\nN(t) is the population size at time t.\n\nK is the carrying capacity.\n\nr is the intrinsic growth rate.\n\n\\(N_0\\) is the initial population size at time t=0."
+    "section": "Exercise 1: adjustement of logistic model (1/2)",
+    "text": "Exercise 1: adjustement of logistic model (1/2)\nWe consider the logistic model (Verhulst) used to describe population growth.\n\\[\n\\frac{dN}{dt} = rN \\left( 1 - \\frac{N}{K} \\right).\n\\] whose solution is given by:\n\\[\nN(t) = \\frac{K}{1 + \\left(\\frac{K - N_0}{N_0}\\right) e^{-rt}}.\n\\] Where:\n\n\nN(t) is the population size at time t.\n\nK is the carrying capacity.\n\nr is the intrinsic growth rate.\n\n\\(N_0\\) is the initial population size at time t=0."
   },
   {
-    "objectID": "sessions/1_shiny/index.html#complete-exercise-1",
-    "href": "sessions/1_shiny/index.html#complete-exercise-1",
+    "objectID": "sessions/1_shiny/index.html#exercise-1-22",
+    "href": "sessions/1_shiny/index.html#exercise-1-22",
     "title": "Dynamic data analysis with Shiny",
-    "section": "Complete Exercise 1",
-    "text": "Complete Exercise 1\nWe define the following objective function, \\(y_i\\) being the observed data and \\(f(x_i, \\beta)\\) the model predictions given a set of parameters \\(\\beta\\):\n\\[\nS(\\beta) = \\sum_{i=1}^{n} (y_i - f(x_i, \\beta))^2\n\\] We want to minimize this ( represents the best parameters estimate):\n\\[\n\\hat{\\beta} = \\arg \\min_{\\beta} S(\\beta) =\\arg \\min_{\\beta} \\sum_{i=1}^{n} (y_i - f(x_i, \\beta))^2\n\\]"
+    "section": "Exercise 1 (2/2)",
+    "text": "Exercise 1 (2/2)\nWe define the following objective function, \\(y_i\\) being the observed data and \\(f(x_i, \\beta)\\) the model predictions given a set of parameters \\(\\beta\\):\n\\[\nS(\\beta) = \\sum_{i=1}^{n} (y_i - f(x_i, \\beta))^2.\n\\] We want to minimize this ( represents the best parameters estimate):\n\\[\n\\hat{\\beta} = \\arg \\min_{\\beta} S(\\beta) =\\arg \\min_{\\beta} \\sum_{i=1}^{n} (y_i - f(x_i, \\beta))^2.\n\\]\nBrowse to  and complete all the exercise 1 tasks."
+  },
+  {
+    "objectID": "sessions/1_shiny/index.html#homework-going-further",
+    "href": "sessions/1_shiny/index.html#homework-going-further",
+    "title": "Dynamic data analysis with Shiny",
+    "section": "Homework: going further",
+    "text": "Homework: going further\nYou can apply the same principle to the following article: https://www.jstatsoft.org/v66/i05/ about doing non linear regression with nlstools."
   },
   {
     "objectID": "sessions/3_closing/index.html#thanks",
@@ -208,12 +215,5 @@
     "title": "Closing remarks",
     "section": "Thanks!",
     "text": "Thanks!"
-  },
-  {
-    "objectID": "sessions/1_shiny/index.html",
-    "href": "sessions/1_shiny/index.html",
-    "title": "Dynamic data analysis with Shiny",
-    "section": "",
-    "text": "… But nobody can use it."
   }
 ]

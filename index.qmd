@@ -32,3 +32,4 @@ It is therefore not a Data Science workshop.
 - Books:
   - [R packages](https://r-pkgs.org/).
   - [Mastering Shiny](https://mastering-shiny.org/).
+  - [Nonlinear Regression with R](https://link.springer.com/book/10.1007/978-0-387-09616-2).

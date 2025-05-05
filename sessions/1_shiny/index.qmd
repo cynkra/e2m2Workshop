@@ -278,9 +278,9 @@ Speaker notes go here.
 
 ![](../../assets/images/1_shiny/practice.svg){width="50%" fig-align="center"}
 
-## Adjustement of logistic model (Verhulst)
+## Exercise 1: adjustement of logistic model (1/2)
 
-We consider the __logistic model__ used to describe __population growth__.
+We consider the __logistic model__ (Verhulst) used to describe __population growth__.
 
 $$
 \frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right).
@@ -297,8 +297,7 @@ Where:
 - `r` is the intrinsic growth rate.
 - $N_0$ is the initial population size at time `t=0`.
 
-
-## Complete Exercise 1
+## Exercise 1 (2/2)
 
 We define the following __objective__ function, $y_i$ being the __observed data__ and $f(x_i, \beta)$ the __model predictions__ given a set of parameters $\beta$:
 
@@ -310,3 +309,9 @@ We want to minimize this (\hat{\beta} represents the best __parameters estimate_
 $$
 \hat{\beta} = \arg \min_{\beta} S(\beta) =\arg \min_{\beta} \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2.
 $$
+
+Browse to <TBD> and complete all the exercise 1 tasks.
+
+## Homework: going further
+
+You can apply the same principle to the following article: https://www.jstatsoft.org/v66/i05/ about doing non linear regression with `nlstools`.
