@@ -102,7 +102,8 @@ ui <- fluidPage(
   div(
     style = "visibility: hidden",
     selectInput(
-      "variable", "Variable:",
+      "variable",
+      "Variable:",
       colnames(mtcars),
       selected = c("qsec", "hp", "cyl"),
       multiple = TRUE
@@ -113,17 +114,19 @@ ui <- fluidPage(
 )
 
 server <- function(input, output, session) {
-  
   reactlog::reactlog_module_server()
-  
+
   res <- reactive({
     mtcars[, c("mpg", input$variable), drop = FALSE]
   })
-  
-  output$data <- renderTable({
-    head(res())
-  }, rownames = TRUE)
-  
+
+  output$data <- renderTable(
+    {
+      head(res())
+    },
+    rownames = TRUE
+  )
+
   output$plot <- renderPlot({
     ggplot(data = res()) +
       geom_point(mapping = aes(x = hp, y = qsec))
@@ -186,13 +189,19 @@ mtcars_demo_code <- paste0(
 ## How does a Shiny app looks?
 
 ```{r shinylive_iframe_app, echo = FALSE, out.width = '150%', out.extra = 'style = "position: relative; z-index:1"', eval=TRUE}
-knitr::include_url(roxy.shinylive::create_shinylive_url(shiny_demo_code, header = FALSE), height = "800px")
+knitr::include_url(
+  roxy.shinylive::create_shinylive_url(shiny_demo_code, header = FALSE),
+  height = "800px"
+)
 ```
 
 ## Is the code complex?
 
 ```{r shinylive_iframe_editor, echo = FALSE, out.width = '150%', out.extra = 'style = "position: relative; z-index:1"', eval=TRUE}
-knitr::include_url(roxy.shinylive::create_shinylive_url(shiny_demo_code, mode = "editor"), height = "800px")
+knitr::include_url(
+  roxy.shinylive::create_shinylive_url(shiny_demo_code, mode = "editor"),
+  height = "800px"
+)
 ```
 
 ## Anatomy of a Shiny app
@@ -215,7 +224,9 @@ You don't need to write any HTML, CSS and JS (but you could 😈...)
 
 ## Initialize interactivity with inputs
 
-![](../../assets/images/1_shiny/inputs.png){fig-align="center"} ::: {.incremental}
+![](../../assets/images/1_shiny/inputs.png){fig-align="center"} 
+
+::: {.incremental}
 
 -   UI: create elements with an **unique** `inputId`, `variable`.
 -   Server: recover its value within `input[["variable"]]` or `input$variable`.
@@ -241,9 +252,9 @@ You don't need to write any HTML, CSS and JS (but you could 😈...)
 ::: incremental
 -   **Return** values.
 -   Take **dependencies** on anything **reactive** inside (input, other reactives).
+-   Evaluate with `()`.
 -   No side effects! (write.csv, ...).
--   **Lazy**: don't run if not used.
--   **cached**: only recompute when needed.
+-   **Lazy** and **cached**: don't run if not used, only recompute when needed.
 :::
 
 ## Overview of the reactive graph
@@ -253,7 +264,10 @@ You don't need to write any HTML, CSS and JS (but you could 😈...)
 ## Reactive graph example
 
 ```{r shinylive_iframe_mtcars, echo = FALSE, out.width = '150%', out.extra = 'style = "position: relative; z-index:1"', eval=TRUE}
-knitr::include_url(roxy.shinylive::create_shinylive_url(mtcars_demo_code, header = FALSE), height = "800px")
+knitr::include_url(
+  roxy.shinylive::create_shinylive_url(mtcars_demo_code, header = FALSE),
+  height = "800px"
+)
 ```
 
 ::: notes
@@ -266,15 +280,15 @@ Speaker notes go here.
 
 ## Adjustement of logistic model (Verhulst)
 
-We consider the logistic model used to describe population growth.
+We consider the __logistic model__ used to describe __population growth__.
 
 $$
-\frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right)
+\frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right).
 $$
 whose solution is given by:
 
 $$
-N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right) e^{-rt}}
+N(t) = \frac{K}{1 + \left(\frac{K - N_0}{N_0}\right) e^{-rt}}.
 $$
 Where:
 
@@ -286,13 +300,13 @@ Where:
 
 ## Complete Exercise 1
 
-We define the following objective function, $y_i$ being the observed data and $f(x_i, \beta)$ the model predictions given a set of parameters $\beta$:
+We define the following __objective__ function, $y_i$ being the __observed data__ and $f(x_i, \beta)$ the __model predictions__ given a set of parameters $\beta$:
 
 $$
-S(\beta) = \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2
+S(\beta) = \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2.
 $$
-We want to minimize this (\hat{\beta} represents the best parameters estimate):
+We want to minimize this (\hat{\beta} represents the best __parameters estimate__):
 
 $$
-\hat{\beta} = \arg \min_{\beta} S(\beta) =\arg \min_{\beta} \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2
+\hat{\beta} = \arg \min_{\beta} S(\beta) =\arg \min_{\beta} \sum_{i=1}^{n} (y_i - f(x_i, \beta))^2.
 $$
