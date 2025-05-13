@@ -23,6 +23,15 @@ editor:
     render-on-save: true
 ---
 
+```{r, setup}
+library(shiny)
+library(bslib)
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(palmerpenguins)
+```
+
 ```{r example-app, echo=FALSE, eval=FALSE}
 library(shiny)
 library(bslib)
@@ -315,3 +324,75 @@ Browse to <TBD> and complete all the exercise 1 tasks.
 ## Homework: going further
 
 You can apply the same principle to the following article: https://www.jstatsoft.org/v66/i05/ about doing non linear regression with `nlstools`.
+
+## Discover shiny components
+
+https://shiny.posit.co/r/components/
+
+![](../../assets/images/1_shiny/components.svg){width="50%" fig-align="center"}
+
+## Improve your application layout
+
+https://shiny.posit.co/r/layouts/
+
+![](../../assets/images/1_shiny/layout.svg){width="50%" fig-align="center"}
+
+## Exercise 2: k-means clustering on the palmerpenguins dataset
+
+Browse to <TBD> and complete all the exercise 2 tasks.
+
+```{r}
+x_var <- "bill_length_mm"
+y_var <- "bill_depth_mm"
+num_clusters <- 3
+
+# Clean data by removing NA values
+penguins_clean <- penguins %>%
+  drop_na(!!sym(x_var), !!sym(y_var))
+
+# Perform k-means clustering
+data_for_clustering <- penguins_clean %>%
+  select(!!sym(x_var), !!sym(y_var))
+
+kmeans_model <- kmeans(data_for_clustering, centers = num_clusters)
+
+# Add clusters to dataset
+clustered_data <- penguins_clean %>%
+  mutate(cluster = as.factor(kmeans_model$cluster))
+
+# Create scatter plot with clusters
+ggplot(clustered_data, aes(x = !!sym(x_var), y = !!sym(y_var))) +
+  geom_point(
+    aes(color = cluster, shape = species),
+    size = 3,
+    alpha = 0.8
+  ) +
+  geom_point(
+    data = as.data.frame(kmeans_model$centers),
+    aes(x = !!sym(x_var), y = !!sym(y_var)),
+    color = "black",
+    size = 5,
+    shape = 8
+  ) +
+  theme_minimal(base_size = 14) +
+  labs(
+    title = "K-means Clustering Results",
+    x = gsub("_", " ", toupper(x_var)),
+    y = gsub("_", " ", toupper(y_var)),
+    color = "Cluster"
+  ) +
+  theme(legend.position = "right") +
+  labs(shape = "Species")
+```
+
+## Congratulations
+
+![](../../assets/images/1_shiny/congrats.svg){width="50%" fig-align="center"}
+
+## What's next
+
+Towards more __maintainable__ Shiny applications:
+
+- Improve user feedback: https://mastering-shiny.org/action-feedback.html.
+- Leverage Shiny modules: https://mastering-shiny.org/scaling-modules.html
+- Testing and performances: https://mastering-shiny.org/scaling-testing.html, https://mastering-shiny.org/performance.html
