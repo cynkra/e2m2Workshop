@@ -5,9 +5,11 @@ editor:
 ---
 
 <details open="true">
-<summary>Exercises 1: logistic model</summary>
+<summary>Exercises 1: discover reactive programming with the logistic model</summary>
 
-Goal: convert the code located at `./assets/1_shiny/logistic/verhulst.R` into a Shiny app.
+Goal: convert the code located at `./assets/1_shiny/logistic/verhulst.R` into a Shiny app. By the end
+of this exercise, you should be able to know how to build a basic Shiny app, that is, 
+what is part of the ui and the server.
 
 ```{r, warning=FALSE, message=FALSE}
 library(ggplot2)
@@ -181,5 +183,30 @@ output$plot <- renderPlot({
       )
   })
 ```
+
+</details>
+
+
+<details open="false">
+<summary>Exercises 2: kmeans clustering on the palmerpenguins dataset</summary>
+
+Goal: improve the application at `./assets/1_shiny/kmeans/tiny-app.R`. You don't need to change the server
+part of the application, as this exercise focuses on UI customisation.
+
+1. Use the `page_sidebar()` to split __input__ and __output__. Typically you can start from something like:
+
+```r
+page_sidebar(
+  title = "K-means Clustering of Palmer Penguins",
+  sidebar = sidebar(
+    title = "Controls",
+    # INPUT CONTROLS
+  ),
+  # MAIN CONTENT (PLOTS)
+)
+```
+
+2. Replace the `radioButtons()` by a more relevant widget. You can do the same for `numericInput()` and `checkboxInput()`.
+3. Move the plot to the main content area.
 
 </details>
