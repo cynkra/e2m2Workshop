@@ -4,7 +4,7 @@
     "href": "exercises.html",
     "title": "Exercises",
     "section": "",
-    "text": "Exercises 1: logistic model\n\nGoal: convert the code located at ./assets/1_shiny/logistic/verhulst.R into a Shiny app.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Read and transform data\nver &lt;- read.table(\n  \"http://pbil.univ-lyon1.fr/R/donnees/VerhulstPF1847.txt\",\n  sep = \"\\t\",\n  header = TRUE\n) |&gt;\n  mutate(obs = obs / 10^6, theo = theo / 10^6)\n\nt0 &lt;- ver$t[1]\nN0 &lt;- ver$obs[1]\n\n# Model equations\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0) / N0) * exp(-r * (t - t0)))\n  })\n}\n\n# Minimize\nsce &lt;- function(p) {\n  theo &lt;- logistic(ver$t, p = setNames(p, c(\"r\", \"K\")))\n  # Least squears\n  sum((ver$obs - theo)^2)\n}\n\n# Fit: K = 5 means 5 millions people max (*10^6)\nnlmfit &lt;- nlm(f = sce, p = c(0.02, 5))\n\n# Calculate model with predicted coefficients\ntseq &lt;- seq(from = 1800, to = 2000, by = 1)\nres &lt;- data.frame(\n  t = tseq,\n  y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n)\n\n# Add linear model alternative\nlm_coef &lt;- coef(lm(ver$obs ~ ver$t))\n\n# Plot everything\nggplot(data = res) +\n  geom_line(mapping = aes(x = t, y = y), color = \"red\") +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs)\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"grey\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in Belgium\"\n  )\n\n\n\n\n\n\n\n\n\nCreate an app.R file with this template:\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  \n)\n\nserver &lt;- function(input, output, session) {\n  \n}\n\nshinyApp(ui, server)\n\nWithin the ui object, create 2 input widgets for r and K parameters. You can use ?shiny::numericInput for guidance.\nImportantly, anything that isn’t reactive can live outside the server function like the logistic function definition and other objects:\n\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0)/N0) * exp(-r*(t-t0)))\n  })\n}\n...\n\nIn the server object, create a reactive that calculate the predicted values by the logistic equation given the 2 UI input parameters (this isn’t the adjusted model):\n\nres &lt;- reactive({\n  # Calculate model with input parameter\n  data.frame(\n    t = tseq,\n    y = logistic(tseq, p = c(r = &lt;INPUT_1&gt;, K = &lt;INPUT_2&gt;)))\n  )\n})\n\nIn the server object use the res reactive expression to plot the data:\n\n# Replace TBD by what is relevant\noutput$&lt;TBD&gt; &lt;- render&lt;TBD&gt;({\n  ggplot(data = &lt;TBD&gt;) +\n  geom_line(mapping = aes(x = t, y = y), color = \"red\") +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs)\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"grey\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in belgium\"\n  )\n})\nDon’t forget to add the corresponding *Output container in the ui part.\n\nRun the app and try to change r and K.\nLet’s fit the model. Create another reactive expression that returns the best fit and corresponding predicted results:\n\nfit &lt;- reactive({\n  # Replace &lt;INPUT_1&gt;, &lt;INPUT_2&gt; by what is defined in ui\n  nlmfit &lt;- nlm(f = sce, p = c(&lt;INPUT_1&gt;, &lt;INPUT_2&gt;))\n\n  # Calculate model with predicted coefficients\n  data.frame(\n    t = tseq,\n    y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n  )\n})\n\nModify the existing output to include the new fitted curve. Replace &lt;TBD&gt; by the relevant value:\n\noutput$plot &lt;- renderPlot({\n    ggplot(data = res()) +\n      geom_line(mapping = aes(x = t, y = y)) +\n      # Model fit curve\n      geom_line(data = &lt;TBD&gt;, mapping = aes(x = t, y = y), color = \"red\") +\n      geom_point(\n        data = ver,\n        mapping = aes(x = t, y = obs)\n      ) +\n      geom_abline(\n        slope = lm_coef[2],\n        intercept = lm_coef[1],\n        color = \"grey\",\n        linetype = \"dashed\"\n      ) +\n      labs(\n        x = \"Year\",\n        y = \"Population in million\",\n        title = \"Population growth in belgium\"\n      )\n  })\n\n\n\nExercises 2: kmeans clustering on the palmerpenguins dataset\n\nGoal: improve the application at ./assets/1_shiny/kmeans/tiny-app.R. You don’t need to change the server part of the application, as this exercise focuses on UI customisation.\n\nUse the page_sidebar() to split input and output. Typically you can start from something like:\n\npage_sidebar(\n  title = \"K-means Clustering of Palmer Penguins\",\n  sidebar = sidebar(\n    title = \"Controls\",\n    # INPUT CONTROLS\n  ),\n  # MAIN CONTENT (PLOTS)\n)\n\nReplace the radioButtons() by a more relevant widget. You can do the same for numericInput() and checkboxInput().\nMove the plot to the main content area."
+    "text": "Exercises 1: discover reactive programming with the logistic model\n\nGoal: convert the code located at ./assets/1_shiny/logistic/verhulst.R into a Shiny app. By the end of this exercise, you should be able to know how to build a basic Shiny app, that is, what is part of the ui and the server.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Read and transform data\nver &lt;- read.table(\n  \"http://pbil.univ-lyon1.fr/R/donnees/VerhulstPF1847.txt\",\n  sep = \"\\t\",\n  header = TRUE\n) |&gt;\n  mutate(obs = obs / 10^6, theo = theo / 10^6)\n\nt0 &lt;- ver$t[1]\nN0 &lt;- ver$obs[1]\n\n# Model equations\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0) / N0) * exp(-r * (t - t0)))\n  })\n}\n\n# Minimize\nsce &lt;- function(p) {\n  theo &lt;- logistic(ver$t, p = setNames(p, c(\"r\", \"K\")))\n  # Least squears\n  sum((ver$obs - theo)^2)\n}\n\n# Fit: K = 5 means 5 millions people max (*10^6)\nnlmfit &lt;- nlm(f = sce, p = c(0.02, 5))\n\n# Calculate model with predicted coefficients\ntseq &lt;- seq(from = 1800, to = 2000, by = 1)\nres &lt;- data.frame(\n  t = tseq,\n  y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n)\n\n# Add linear model alternative\nlm_coef &lt;- coef(lm(ver$obs ~ ver$t))\n\n# Plot everything\nggplot(data = res) +\n  geom_line(mapping = aes(x = t, y = y), color = \"red\") +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs)\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"grey\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in Belgium\"\n  )\n\n\n\n\n\n\n\n\n\nCreate an app.R file with this template:\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  \n)\n\nserver &lt;- function(input, output, session) {\n  \n}\n\nshinyApp(ui, server)\n\nWithin the ui object, create 2 input widgets for r and K parameters. You can use ?shiny::numericInput for guidance.\nImportantly, anything that isn’t reactive can live outside the server function like the logistic function definition and other objects:\n\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0)/N0) * exp(-r*(t-t0)))\n  })\n}\n...\n\nIn the server object, create a reactive that calculate the predicted values by the logistic equation given the 2 UI input parameters (this isn’t the adjusted model):\n\nres &lt;- reactive({\n  # Calculate model with input parameter\n  data.frame(\n    t = tseq,\n    y = logistic(tseq, p = c(r = &lt;INPUT_1&gt;, K = &lt;INPUT_2&gt;)))\n  )\n})\n\nIn the server object use the res reactive expression to plot the data:\n\n# Replace TBD by what is relevant\noutput$&lt;TBD&gt; &lt;- render&lt;TBD&gt;({\n  ggplot(data = &lt;TBD&gt;) +\n  geom_line(mapping = aes(x = t, y = y), color = \"red\") +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs)\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"grey\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in belgium\"\n  )\n})\nDon’t forget to add the corresponding *Output container in the ui part.\n\nRun the app and try to change r and K.\nLet’s fit the model. Create another reactive expression that returns the best fit and corresponding predicted results:\n\nfit &lt;- reactive({\n  # Replace &lt;INPUT_1&gt;, &lt;INPUT_2&gt; by what is defined in ui\n  nlmfit &lt;- nlm(f = sce, p = c(&lt;INPUT_1&gt;, &lt;INPUT_2&gt;))\n\n  # Calculate model with predicted coefficients\n  data.frame(\n    t = tseq,\n    y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n  )\n})\n\nModify the existing output to include the new fitted curve. Replace &lt;TBD&gt; by the relevant value:\n\noutput$plot &lt;- renderPlot({\n    ggplot(data = res()) +\n      geom_line(mapping = aes(x = t, y = y)) +\n      # Model fit curve\n      geom_line(data = &lt;TBD&gt;, mapping = aes(x = t, y = y), color = \"red\") +\n      geom_point(\n        data = ver,\n        mapping = aes(x = t, y = obs)\n      ) +\n      geom_abline(\n        slope = lm_coef[2],\n        intercept = lm_coef[1],\n        color = \"grey\",\n        linetype = \"dashed\"\n      ) +\n      labs(\n        x = \"Year\",\n        y = \"Population in million\",\n        title = \"Population growth in belgium\"\n      )\n  })\n\n\n\nExercises 2: kmeans clustering on the palmerpenguins dataset\n\nGoal: improve the application at ./assets/1_shiny/kmeans/tiny-app.R. You don’t need to change the server part of the application, as this exercise focuses on UI customisation.\n\nUse the page_sidebar() to split input and output. Typically you can start from something like:\n\npage_sidebar(\n  title = \"K-means Clustering of Palmer Penguins\",\n  sidebar = sidebar(\n    title = \"Controls\",\n    # INPUT CONTROLS\n  ),\n  # MAIN CONTENT (PLOTS)\n)\n\nReplace the radioButtons() by a more relevant widget. You can do the same for numericInput() and checkboxInput().\nMove the plot to the main content area."
   },
   {
     "objectID": "sessions/2_quarto/index.html#quarto",
@@ -94,15 +94,15 @@
     "objectID": "sessions/1_shiny/index.html#i-get-a-pretty-cool-local-r-program",
     "href": "sessions/1_shiny/index.html#i-get-a-pretty-cool-local-r-program",
     "title": "Dynamic data analysis with Shiny",
-    "section": "",
-    "text": "… But nobody can use it."
+    "section": "I get a pretty cool local R program …",
+    "text": "I get a pretty cool local R program …\n\n… But nobody can use it."
   },
   {
     "objectID": "sessions/1_shiny/index.html#but-wait-web-applications-exist-for-a-long-time.",
     "href": "sessions/1_shiny/index.html#but-wait-web-applications-exist-for-a-long-time.",
     "title": "Dynamic data analysis with Shiny",
     "section": "But wait … web applications exist for a long time.",
-    "text": "But wait … web applications exist for a long time.\n\n\n\n\n\n\nSure, you just need to convert R to web languages (HTML, CSS, JS)."
+    "text": "But wait … web applications exist for a long time.\n\n\nSure, you just need to convert R to web languages (HTML, CSS, JS)."
   },
   {
     "objectID": "sessions/1_shiny/index.html#isnt-there-an-easier-way-for-r-developers",
@@ -116,7 +116,7 @@
     "href": "sessions/1_shiny/index.html#welcome-shiny",
     "title": "Dynamic data analysis with Shiny",
     "section": "Welcome Shiny?",
-    "text": "Welcome Shiny?\n\n\n\n\n\n\n\n\n\nMake web development accessible to R people.\nUnleash programs interactivity.\nPoint and click data Science."
+    "text": "Welcome Shiny?\n\n\n\n\n\n\n\n\nMake web development accessible to R people.\nUnleash programs interactivity.\n\nPoint and click data Science."
   },
   {
     "objectID": "sessions/1_shiny/index.html#how-does-a-shiny-app-looks",
@@ -151,21 +151,21 @@
     "href": "sessions/1_shiny/index.html#initialize-interactivity-with-inputs",
     "title": "Dynamic data analysis with Shiny",
     "section": "Initialize interactivity with inputs",
-    "text": "Initialize interactivity with inputs\n\n\n\n\n\n\n\nUI: create elements with an unique inputId, variable.\nServer: recover its value within input[[\"variable\"]] or input$variable.\ninput is read only."
+    "text": "Initialize interactivity with inputs\n\n\n\nUI: create elements with an unique inputId, variable.\nServer: recover its value within input[[\"variable\"]] or input$variable.\n\ninput is read only."
   },
   {
     "objectID": "sessions/1_shiny/index.html#render-output-elements",
     "href": "sessions/1_shiny/index.html#render-output-elements",
     "title": "Dynamic data analysis with Shiny",
     "section": "Render output elements",
-    "text": "Render output elements\n\n\n\n\n\n\n\nUse a suitable renderer: renderTable, renderPlot, …\nAssign unique outputId: data.\nRecover output on the UI (IDs must match!): tableOutput, plotOutput, …\noutput is readonly."
+    "text": "Render output elements\n\n\n\nUse a suitable renderer: renderTable, renderPlot, …\nAssign unique outputId: data.\nRecover output on the UI (IDs must match!): tableOutput, plotOutput, …\n\noutput is readonly."
   },
   {
     "objectID": "sessions/1_shiny/index.html#intermediate-results-with-reactive-expressions",
     "href": "sessions/1_shiny/index.html#intermediate-results-with-reactive-expressions",
     "title": "Dynamic data analysis with Shiny",
     "section": "Intermediate results with reactive expressions",
-    "text": "Intermediate results with reactive expressions\n\n\n\n\n\n\n\nReturn values.\nTake dependencies on anything reactive inside (input, other reactives).\nEvaluate with ().\nNo side effects! (write.csv, …).\nLazy and cached: don’t run if not used, only recompute when needed."
+    "text": "Intermediate results with reactive expressions\n\n\n\n\nReturn values.\nTake dependencies on anything reactive inside (input, other reactives).\nEvaluate with ().\nNo side effects! (write.csv, …).\n\nLazy and cached: don’t run if not used, only recompute when needed."
   },
   {
     "objectID": "sessions/1_shiny/index.html#overview-of-the-reactive-graph",
@@ -179,7 +179,7 @@
     "href": "sessions/1_shiny/index.html#reactive-graph-example",
     "title": "Dynamic data analysis with Shiny",
     "section": "Reactive graph example",
-    "text": "Reactive graph example\n\n\n\n\n\nSpeaker notes go here."
+    "text": "Reactive graph example\n\n\n\n\nSpeaker notes go here."
   },
   {
     "objectID": "sessions/1_shiny/index.html#your-turn",
@@ -193,7 +193,7 @@
     "href": "sessions/1_shiny/index.html#exercise-1-adjustement-of-logistic-model-12",
     "title": "Dynamic data analysis with Shiny",
     "section": "Exercise 1: adjustement of logistic model (1/2)",
-    "text": "Exercise 1: adjustement of logistic model (1/2)\nWe consider the logistic model (Verhulst) used to describe population growth.\n\\[\n\\frac{dN}{dt} = rN \\left( 1 - \\frac{N}{K} \\right).\n\\] whose solution is given by:\n\\[\nN(t) = \\frac{K}{1 + \\left(\\frac{K - N_0}{N_0}\\right) e^{-rt}}.\n\\] Where:\n\nN(t) is the population size at time t.\nK is the carrying capacity.\nr is the intrinsic growth rate.\n\\(N_0\\) is the initial population size at time t=0."
+    "text": "Exercise 1: adjustement of logistic model (1/2)\nWe consider the logistic model (Verhulst) used to describe population growth.\n\\[\n\\frac{dN}{dt} = rN \\left( 1 - \\frac{N}{K} \\right).\n\\] whose solution is given by:\n\\[\nN(t) = \\frac{K}{1 + \\left(\\frac{K - N_0}{N_0}\\right) e^{-rt}}.\n\\] Where:\n\n\nN(t) is the population size at time t.\n\nK is the carrying capacity.\n\nr is the intrinsic growth rate.\n\n\\(N_0\\) is the initial population size at time t=0."
   },
   {
     "objectID": "sessions/1_shiny/index.html#exercise-1-22",
@@ -210,34 +210,6 @@
     "text": "Homework: going further\nYou can apply the same principle to the following article: https://www.jstatsoft.org/v66/i05/ about doing non linear regression with nlstools."
   },
   {
-    "objectID": "sessions/3_closing/index.html#thanks",
-    "href": "sessions/3_closing/index.html#thanks",
-    "title": "Closing remarks",
-    "section": "Thanks!",
-    "text": "Thanks!"
-  },
-  {
-    "objectID": "sessions/1_shiny/index.html",
-    "href": "sessions/1_shiny/index.html",
-    "title": "Dynamic data analysis with Shiny",
-    "section": "",
-    "text": "… But nobody can use it."
-  },
-  {
-    "objectID": "sessions/1_shiny/index.html#better-ui-discover-shiny-components",
-    "href": "sessions/1_shiny/index.html#better-ui-discover-shiny-components",
-    "title": "Dynamic data analysis with Shiny",
-    "section": "Better UI: discover shiny components",
-    "text": "Better UI: discover shiny components\nhttps://shiny.posit.co/r/components/"
-  },
-  {
-    "objectID": "sessions/1_shiny/index.html#improve-your-application-layout",
-    "href": "sessions/1_shiny/index.html#improve-your-application-layout",
-    "title": "Dynamic data analysis with Shiny",
-    "section": "Improve your application layout",
-    "text": "Improve your application layout\nhttps://shiny.posit.co/r/layouts/"
-  },
-  {
     "objectID": "sessions/1_shiny/index.html#discover-shiny-components",
     "href": "sessions/1_shiny/index.html#discover-shiny-components",
     "title": "Dynamic data analysis with Shiny",
@@ -245,11 +217,11 @@
     "text": "Discover shiny components\nhttps://shiny.posit.co/r/components/"
   },
   {
-    "objectID": "sessions/1_shiny/index.html#exercise-2-k-means-clustering",
-    "href": "sessions/1_shiny/index.html#exercise-2-k-means-clustering",
+    "objectID": "sessions/1_shiny/index.html#improve-your-application-layout",
+    "href": "sessions/1_shiny/index.html#improve-your-application-layout",
     "title": "Dynamic data analysis with Shiny",
-    "section": "Exercise 2: k-means clustering",
-    "text": "Exercise 2: k-means clustering\nk-means clustering on the palmerpenguins dataset."
+    "section": "Improve your application layout",
+    "text": "Improve your application layout\nhttps://shiny.posit.co/r/layouts/"
   },
   {
     "objectID": "sessions/1_shiny/index.html#exercise-2-k-means-clustering-on-the-palmerpenguins-dataset",
@@ -271,5 +243,12 @@
     "title": "Dynamic data analysis with Shiny",
     "section": "What’s next",
     "text": "What’s next\nTowards more maintainable Shiny applications:\n\nImprove user feedback: https://mastering-shiny.org/action-feedback.html.\nLeverage Shiny modules: https://mastering-shiny.org/scaling-modules.html\nTesting and performances: https://mastering-shiny.org/scaling-testing.html, https://mastering-shiny.org/performance.html"
+  },
+  {
+    "objectID": "sessions/3_closing/index.html#thanks",
+    "href": "sessions/3_closing/index.html#thanks",
+    "title": "Closing remarks",
+    "section": "Thanks!",
+    "text": "Thanks!"
   }
 ]
