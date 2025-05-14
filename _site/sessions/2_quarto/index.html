@@ -6,17 +6,17 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
-
-  <meta name="author" content="David Granjon (cynkra GmbH)">
-  <title>Data Analysis and Reporting with Shiny and Quarto – Easy reporting with Quarto</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-  <style>
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+<meta name="author" content="David Granjon (cynkra GmbH)">
+<title>Data Analysis and Reporting with Shiny and Quarto – Easy reporting with Quarto</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -28,14 +28,80 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5692991a6e6dc6827419b0f8cf3de1ac.css">
-  <link rel="stylesheet" href="../../assets/css/custom.scss">
-  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-5692991a6e6dc6827419b0f8cf3de1ac.css">
+<link rel="stylesheet" href="../../assets/css/custom.scss">
+<link rel="stylesheet" href="../../styles.css">
+<link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -122,13 +188,13 @@
       margin-right: 0; 
     }
   </style>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script><script src="../../site_libs/quarto-diagram/mermaid-init.js"></script><link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Easy reporting with Quarto</h1>
+<section id="title-slide" class="quarto-title-block center"><h1 class="title">Easy reporting with Quarto</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -138,36 +204,232 @@ David Granjon (cynkra GmbH)
 </div>
 </div>
 
-</section>
-<section id="quarto" class="slide level2">
-<h2>Quarto?</h2>
+</section><section id="welcome-to-quarto" class="slide level2"><h2>Welcome to Quarto®</h2>
+<p>An open-source scientific and technical publishing system <sup>1</sup></p>
+<video autoplay="" muted="" playsinline="" loop="" style="display: block; margin: 0 auto;"><source src="../../assets/images/2_quarto/quarto.mp4" type="video/mp4"></video><aside><ol class="aside-footnotes"><li id="fn1"><p>This workshop is fully made with Quarto!</p></li></ol></aside></section><section id="various-output-formats" class="slide level2"><h2>Various output formats</h2>
+<ul>
+<li>Reports.</li>
+<li>Presentations.</li>
+<li>Books.</li>
+<li>Websites, blogs.</li>
+<li>Dashboards.</li>
+</ul></section><section id="various-languages" class="slide level2"><h2>Various languages</h2>
+<p>R, Python, julia, observable.</p>
+</section><section id="how-quarto-works" class="slide level2"><h2>How Quarto works</h2>
+
+<img data-src="../../assets/images/2_quarto/rstudio-qmd-how-it-works.png" class="quarto-figure quarto-figure-center r-stretch"></section><section id="is-is-complex" class="slide level2"><h2>Is is complex?</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a></a><span class="co">---</span></span>
+<span id="cb1-2"><a></a><span class="an">title:</span><span class="co"> "Hello, Quarto"</span></span>
+<span id="cb1-3"><a></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb1-4"><a></a><span class="co">  html:</span></span>
+<span id="cb1-5"><a></a><span class="co">    code-fold: true</span></span>
+<span id="cb1-6"><a></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-7"><a></a><span class="co">    code-link: true</span></span>
+<span id="cb1-8"><a></a><span class="co">  pdf:</span></span>
+<span id="cb1-9"><a></a><span class="co">    geometry: </span></span>
+<span id="cb1-10"><a></a><span class="co">      - top=30mm</span></span>
+<span id="cb1-11"><a></a><span class="co">      - left=30mm</span></span>
+<span id="cb1-12"><a></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb1-13"><a></a><span class="co">---</span></span>
+<span id="cb1-14"><a></a></span>
+<span id="cb1-15"><a></a><span class="fu">## This is an example</span></span>
+<span id="cb1-16"><a></a></span>
+<span id="cb1-17"><a></a>A super plot</span>
+<span id="cb1-18"><a></a></span>
+<span id="cb1-19"><a></a><span class="in">```{r}</span></span>
+<span id="cb1-20"><a></a><span class="in">#| label: scatterplot</span></span>
+<span id="cb1-21"><a></a><span class="in">#| echo: true</span></span>
+<span id="cb1-22"><a></a></span>
+<span id="cb1-23"><a></a><span class="in">ggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +</span></span>
+<span id="cb1-24"><a></a><span class="in">  geom_point(alpha = 0.5, size = 2) +</span></span>
+<span id="cb1-25"><a></a><span class="in">  scale_color_viridis_c() +</span></span>
+<span id="cb1-26"><a></a><span class="in">  theme_minimal()</span></span>
+<span id="cb1-27"><a></a><span class="in">```</span></span>
+<span id="cb1-28"><a></a></span>
+<span id="cb1-29"><a></a><span class="fu">## A second title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="exercise-1" class="slide level2"><h2>Exercise 1</h2>
+<ol type="1">
+<li>Go in RStudio create a new quarto project and choose <code>manuscript</code>.</li>
+<li>Inspect and discuss the structure of the document.</li>
+<li>Click on the <code>render</code> icon and select a format.</li>
+</ol>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="../../assets/images/2_quarto/quarto-project.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img data-src="../../assets/images/2_quarto/manuscript-template.png"></p>
+</div>
+</div>
+</div>
+</section><section id="markdown-basics-1" class="slide level2"><h2>Markdown basics (1)</h2>
+<h3 id="headings">Headings</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a></a><span class="fu"># Heading 1</span></span>
+<span id="cb2-2"><a></a><span class="fu">## Heading 2</span></span>
+<span id="cb2-3"><a></a>...</span>
+<span id="cb2-4"><a></a><span class="fu">###### Heading 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="images">Images</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a></a><span class="al">![Caption](&lt;IMAGE_PATH&gt;)</span>{fig-align="center|left|right" ...}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="code">Code</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb4-2"><a></a><span class="in">#| echo: false</span></span>
+<span id="cb4-3"><a></a><span class="in">#| fig-cap: "Air Quality"</span></span>
+<span id="cb4-4"><a></a><span class="in">#| label: code label</span></span>
+<span id="cb4-5"><a></a><span class="in">#| eval: true</span></span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a><span class="in">library(tidyverse)</span></span>
+<span id="cb4-8"><a></a><span class="in">penguins %&gt;% </span></span>
+<span id="cb4-9"><a></a><span class="in">  group_by(species) %&gt;% </span></span>
+<span id="cb4-10"><a></a><span class="in">  summarize(across(where(is.numeric), mean, na.rm = TRUE))</span></span>
+<span id="cb4-11"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="equations">Equations</h3>
+<h4 id="inline">Inline</h4>
+<p><code>$\lambda$</code></p>
+<h4 id="display">Display</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource md number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a>$$</span>
+<span id="cb5-2"><a></a>\frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right).</span>
+<span id="cb5-3"><a></a>$$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="code-annotations" class="slide level2"><h2>Code annotations</h2>
+<div class="columns">
+<div class="column">
+<p>Code</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a></span>
+<span id="cb6-2"><a></a><span class="in">```r</span></span>
+<span id="cb6-3"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-4"><a></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb6-5"><a></a>penguins <span class="sc">|&gt;</span>                                      <span class="co"># &lt;1&gt;</span></span>
+<span id="cb6-6"><a></a>  <span class="fu">mutate</span>(                                        <span class="co"># &lt;2&gt;</span></span>
+<span id="cb6-7"><a></a>    <span class="at">bill_ratio =</span> bill_depth_mm <span class="sc">/</span> bill_length_mm, <span class="co"># &lt;2&gt;</span></span>
+<span id="cb6-8"><a></a>    <span class="at">bill_area  =</span> bill_depth_mm <span class="sc">*</span> bill_length_mm  <span class="co"># &lt;2&gt;</span></span>
+<span id="cb6-9"><a></a>  )                                              <span class="co"># &lt;2&gt;</span></span>
+<span id="cb6-10"><a></a><span class="in">```</span></span>
+<span id="cb6-11"><a></a><span class="ss">1. </span>Take <span class="in">`penguins`</span>, and then,</span>
+<span id="cb6-12"><a></a><span class="ss">2. </span>add new columns for the bill ratio and bill area.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<p>Result</p>
+<div class="sourceCode" id="annotated-cell-10"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="annotated-cell-10-2"><a href="#annotated-cell-10-2"></a><span class="fu">library</span>(palmerpenguins)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3"></a>penguins <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-10-4" class="code-annotation-target"><a href="#annotated-cell-10-4"></a>  <span class="fu">mutate</span>(</span>
+<span id="annotated-cell-10-5"><a href="#annotated-cell-10-5"></a>    <span class="at">bill_ratio =</span> bill_depth_mm <span class="sc">/</span> bill_length_mm,</span>
+<span id="annotated-cell-10-6"><a href="#annotated-cell-10-6"></a>    <span class="at">bill_area  =</span> bill_depth_mm <span class="sc">*</span> bill_length_mm</span>
+<span id="annotated-cell-10-7"><a href="#annotated-cell-10-7"></a>  )</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="3" data-code-annotation="1">Take <code>penguins</code>, and then,</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="4,5,6,7" data-code-annotation="2">add new columns for the bill ratio and bill area.</span>
+</dd>
+</dl>
+</div></div>
+</section><section id="code-options" class="slide level2"><h2>Code options</h2>
+<div class="columns">
+<div class="column">
+<p>Code</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a></span>
+<span id="cb7-2"><a></a><span class="in">```r</span></span>
+<span id="cb7-3"><a></a><span class="co">#| code-fold: true</span></span>
+<span id="cb7-4"><a></a><span class="co">#| code-summary: "Show the code"</span></span>
+<span id="cb7-5"><a></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb7-6"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<p>Result</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+</div></div>
+</section><section id="output-location" class="slide level2"><h2>Output location</h2>
+<p>Add <code>#| output-location: column</code> to you code options.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a></span>
+<span id="cb9-2"><a></a><span class="in">```r</span></span>
+<span id="cb9-3"><a></a><span class="co">#| output-location: column</span></span>
+<span id="cb9-4"><a></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb9-5"><a></a><span class="co">#| fig-height: 4</span></span>
+<span id="cb9-6"><a></a><span class="fu">ggplot</span>(penguins, </span>
+<span id="cb9-7"><a></a>       <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb9-8"><a></a>           <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb9-9"><a></a>           <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb9-10"><a></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb9-11"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p><br></p>
+<div class="cell columns column-output-location">
+<div class="column">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb10-2"><a></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="cell-output-display">
+<div>
+<figure><p><img data-src="index_files/figure-revealjs/unnamed-chunk-2-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div></div>
+</div>
+</section><section id="diagrams" class="slide level2"><h2>Diagrams</h2>
+<p>Quarto supports <code>mermaid.js</code></p>
+<div class="columns">
+<div class="column">
+<p>Code</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a></span>
+<span id="cb11-2"><a></a><span class="in">```mermaid</span></span>
+<span id="cb11-3"><a></a><span class="in">%%| fig-width: 6.5</span></span>
+<span id="cb11-4"><a></a><span class="in">flowchart LR</span></span>
+<span id="cb11-5"><a></a><span class="in">  A[Hard edge] --&gt; B(Round edge)</span></span>
+<span id="cb11-6"><a></a><span class="in">  B --&gt; C{Decision}</span></span>
+<span id="cb11-7"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<p>Result</p>
+<div class="cell" data-reveal="true" data-theme="sandstone" data-fig-width="6.5" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""></figure><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  A[Hard edge] --&gt; B(Round edge)
+  B --&gt; C{Decision}
+</pre>
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div></div>
+</section><section id="caching-computations" class="slide level2"><h2>Caching computations</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a></a><span class="co">---</span></span>
+<span id="cb12-2"><a></a><span class="an">title:</span><span class="co"> "My Document"</span></span>
+<span id="cb12-3"><a></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb12-4"><a></a><span class="co">  cache: true</span></span>
+<span id="cb12-5"><a></a><span class="co">---</span></span>
+<span id="cb12-6"><a></a></span>
+<span id="cb12-7"><a></a><span class="in">```{r}</span></span>
+<span id="cb12-8"><a></a><span class="in">#| cache: true</span></span>
+<span id="cb12-9"><a></a><span class="in"># code for lengthy computation...</span></span>
+<span id="cb12-10"><a></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>TBD</p>
+</section><section id="a-dashboard-example" class="slide level2"><h2>A dashboard example</h2>
+<iframe src="https://grrrck.quarto.pub/mynorfolk-dash/" width="100%" height="500px">
+</iframe>
 
 
 </section>
-    </div>
+</div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
 <p><img src="../../assets/images/cynkra.svg" width="5%"></p>
 </div>
 </div></div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../../site_libs/revealjs/plugin/search/search.js"></script><script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -358,8 +620,42 @@ David Granjon (cynkra GmbH)
           RevealZoom
         ]
       });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
+    </script><script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script><script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -544,6 +840,6 @@ David Granjon (cynkra GmbH)
       }
     });
     </script>
-    
+
 
 </body></html>

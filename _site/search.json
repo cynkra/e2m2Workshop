@@ -1,94 +1,24 @@
 [
   {
-    "objectID": "exercises.html",
-    "href": "exercises.html",
-    "title": "Exercises",
+    "objectID": "assets/R/2_quarto/manuscript-example/index.html",
+    "href": "assets/R/2_quarto/manuscript-example/index.html",
+    "title": "manuscript-example",
     "section": "",
-    "text": "Exercises 1: discover reactive programming with the logistic model\n\nGoal: convert the code located at ./assets/1_shiny/logistic/verhulst.R into a Shiny app. By the end of this exercise, you should be able to know how to build a basic Shiny app, that is, what is part of the ui and the server.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Read and transform data\nver &lt;- read.table(\n  \"http://pbil.univ-lyon1.fr/R/donnees/VerhulstPF1847.txt\",\n  sep = \"\\t\",\n  header = TRUE\n) |&gt;\n  mutate(obs = obs / 10^6, theo = theo / 10^6)\n\nt0 &lt;- ver$t[1]\nN0 &lt;- ver$obs[1]\n\n# Model equations\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0) / N0) * exp(-r * (t - t0)))\n  })\n}\n\n# Minimize\nsce &lt;- function(p) {\n  theo &lt;- logistic(ver$t, p = setNames(p, c(\"r\", \"K\")))\n  # Least squears\n  sum((ver$obs - theo)^2)\n}\n\n# Fit: K = 5 means 5 millions people max (*10^6)\nnlmfit &lt;- nlm(f = sce, p = c(0.02, 5))\n\n# Calculate model with predicted coefficients\ntseq &lt;- seq(from = 1800, to = 2000, by = 1)\nres &lt;- data.frame(\n  t = tseq,\n  y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n)\n\n# Add linear model alternative\nlm_coef &lt;- coef(lm(ver$obs ~ ver$t))\n\n# Plot everything\nggplot(data = res) +\n  geom_line(mapping = aes(x = t, y = y), color = \"red\") +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs)\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"grey\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in Belgium\"\n  )\n\n\n\n\n\n\n\n\n\nCreate an app.R file with this template:\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  \n)\n\nserver &lt;- function(input, output, session) {\n  \n}\n\nshinyApp(ui, server)\n\nWithin the ui object, create 2 input widgets for r and K parameters. You can use ?shiny::numericInput for guidance.\nImportantly, anything that isn’t reactive can live outside the server function like the logistic function definition and other objects:\n\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0)/N0) * exp(-r*(t-t0)))\n  })\n}\n...\n\nIn the server object, create a reactive that calculate the predicted values by the logistic equation given the 2 UI input parameters (this isn’t the adjusted model):\n\nres &lt;- reactive({\n  # Calculate model with input parameter\n  data.frame(\n    t = tseq,\n    y = logistic(tseq, p = c(r = &lt;INPUT_1&gt;, K = &lt;INPUT_2&gt;)))\n  )\n})\n\nIn the server object use the res reactive expression to plot the data:\n\n# Replace TBD by what is relevant\noutput$&lt;TBD&gt; &lt;- render&lt;TBD&gt;({\n  ggplot(data = &lt;TBD&gt;) +\n  geom_line(mapping = aes(x = t, y = y), color = \"red\") +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs)\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"grey\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in belgium\"\n  )\n})\nDon’t forget to add the corresponding *Output container in the ui part.\n\nRun the app and try to change r and K.\nLet’s fit the model. Create another reactive expression that returns the best fit and corresponding predicted results:\n\nfit &lt;- reactive({\n  # Replace &lt;INPUT_1&gt;, &lt;INPUT_2&gt; by what is defined in ui\n  nlmfit &lt;- nlm(f = sce, p = c(&lt;INPUT_1&gt;, &lt;INPUT_2&gt;))\n\n  # Calculate model with predicted coefficients\n  data.frame(\n    t = tseq,\n    y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n  )\n})\n\nModify the existing output to include the new fitted curve. Replace &lt;TBD&gt; by the relevant value:\n\noutput$plot &lt;- renderPlot({\n    ggplot(data = res()) +\n      geom_line(mapping = aes(x = t, y = y)) +\n      # Model fit curve\n      geom_line(data = &lt;TBD&gt;, mapping = aes(x = t, y = y), color = \"red\") +\n      geom_point(\n        data = ver,\n        mapping = aes(x = t, y = obs)\n      ) +\n      geom_abline(\n        slope = lm_coef[2],\n        intercept = lm_coef[1],\n        color = \"grey\",\n        linetype = \"dashed\"\n      ) +\n      labs(\n        x = \"Year\",\n        y = \"Population in million\",\n        title = \"Population growth in belgium\"\n      )\n  })\n\n\n\nExercises 2: kmeans clustering on the palmerpenguins dataset\n\nGoal: improve the application at ./assets/1_shiny/kmeans/tiny-app.R. You don’t need to change the server part of the application, as this exercise focuses on UI customisation.\n\nUse the page_sidebar() to split input and output. Typically you can start from something like:\n\npage_sidebar(\n  title = \"K-means Clustering of Palmer Penguins\",\n  sidebar = sidebar(\n    title = \"Controls\",\n    # INPUT CONTROLS\n  ),\n  # MAIN CONTENT (PLOTS)\n)\n\nReplace the radioButtons() by a more relevant widget. You can do the same for numericInput() and checkboxInput().\nMove the plot to the main content area."
+    "text": "This is a simple placeholder for the manuscript’s main document (Knuth 1984).\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "sessions/2_quarto/index.html#quarto",
-    "href": "sessions/2_quarto/index.html#quarto",
-    "title": "Easy reporting with Quarto",
-    "section": "Quarto?",
-    "text": "Quarto?"
-  },
-  {
-    "objectID": "sessions/0_welcome/index.html#hi-and-welcome",
-    "href": "sessions/0_welcome/index.html#hi-and-welcome",
-    "title": "Introduction",
-    "section": "Hi and Welcome!",
-    "text": "Hi and Welcome!"
-  },
-  {
-    "objectID": "sessions/0_welcome/index.html#important-information",
-    "href": "sessions/0_welcome/index.html#important-information",
-    "title": "Introduction",
-    "section": "Important information",
-    "text": "Important information\n\nWorkshop website: TBD.\n…"
-  },
-  {
-    "objectID": "sessions/0_welcome/index.html#who-are-you-workshop-pre-requisites",
-    "href": "sessions/0_welcome/index.html#who-are-you-workshop-pre-requisites",
-    "title": "Introduction",
-    "section": "Who are you: workshop pre-requisites",
-    "text": "Who are you: workshop pre-requisites\n\n\nYou are a master student/doctoral student with data analysis background.\nYou don’t know or just heard about Shiny/Quarto and want to supercharge your work.\nYou know R."
-  },
-  {
-    "objectID": "sessions/0_welcome/index.html#david-granjon",
-    "href": "sessions/0_welcome/index.html#david-granjon",
-    "title": "Introduction",
-    "section": "David Granjon",
-    "text": "David Granjon\n\n\nDavid works as a Lead Shiny Developer at cynkra GmbH and founder of the open source RinteRface organisation."
-  },
-  {
-    "objectID": "sessions/0_welcome/index.html#objectives",
-    "href": "sessions/0_welcome/index.html#objectives",
-    "title": "Introduction",
-    "section": "Objectives",
-    "text": "Objectives\n\n\nUnderstand what is Shiny.\nHow to move from “static” data analysis to “dynamic” data analysis.\nDiscover how Quarto can improve your data reporting journey."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "objectID": "assets/R/2_quarto/manuscript-example/index.html#section",
+    "href": "assets/R/2_quarto/manuscript-example/index.html#section",
+    "title": "manuscript-example",
     "section": "",
-    "text": "This course focuses on demonstrating how Shiny and Quarto can supercharge your data analysis and reporting workflows. It is therefore not a Data Science workshop."
+    "text": "This is a simple placeholder for the manuscript’s main document (Knuth 1984).\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Data Analysis and Reporting with Shiny and Quarto",
-    "section": "",
-    "text": "This course focuses on demonstrating how Shiny and Quarto can supercharge your data analysis and reporting workflows. It is therefore not a Data Science workshop."
-  },
-  {
-    "objectID": "index.html#pre-requisites",
-    "href": "index.html#pre-requisites",
-    "title": "Data Analysis and Reporting with Shiny and Quarto",
-    "section": "Pre-requisites:",
-    "text": "Pre-requisites:\n\nRecent R version installed (R &gt; 4.2.0).\nKnow how to run a script.\nKnowledge about R package development.\nUp to date IDE: RStudio/VSCode/Positron/… (https://posit.co/download/rstudio-desktop/).\nQuarto installed: https://quarto.org/docs/get-started/."
-  },
-  {
-    "objectID": "index.html#workshop-program",
-    "href": "index.html#workshop-program",
-    "title": "Data Analysis and Reporting with Shiny and Quarto",
-    "section": "Workshop program",
-    "text": "Workshop program\n\n\n\nSession\nTopic\nDuration\n\n\n\n\nWelcome\n👋 Welcome\n10 min\n\n\nSession 1\n📚 Exploratory data analysis with Shiny\n1h40min\n\n\nBreak\n☕ Active break (ask any questions)\n20 min\n\n\nSession 2\n📚 Seamless reporting with Quarto\n1h40min\n\n\nWrap\n🎁 Wrap up\n10 min"
-  },
-  {
-    "objectID": "index.html#recommended-readings",
-    "href": "index.html#recommended-readings",
-    "title": "Data Analysis and Reporting with Shiny and Quarto",
-    "section": "Recommended readings:",
-    "text": "Recommended readings:\n\nBooks:\n\nR packages.\nMastering Shiny.\nNonlinear Regression with R."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "Your instructors",
-    "section": "",
-    "text": "David Granjon (cynkra)\n\nDavid is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps."
+    "objectID": "sessions/3_closing/index.html#thanks",
+    "href": "sessions/3_closing/index.html#thanks",
+    "title": "Closing remarks",
+    "section": "Thanks!",
+    "text": "Thanks!"
   },
   {
     "objectID": "sessions/1_shiny/index.html#i-get-a-pretty-cool-local-r-program",
@@ -245,10 +175,178 @@
     "text": "What’s next\nTowards more maintainable Shiny applications:\n\nImprove user feedback: https://mastering-shiny.org/action-feedback.html.\nLeverage Shiny modules: https://mastering-shiny.org/scaling-modules.html\nTesting and performances: https://mastering-shiny.org/scaling-testing.html, https://mastering-shiny.org/performance.html"
   },
   {
-    "objectID": "sessions/3_closing/index.html#thanks",
-    "href": "sessions/3_closing/index.html#thanks",
-    "title": "Closing remarks",
-    "section": "Thanks!",
-    "text": "Thanks!"
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Your instructors",
+    "section": "",
+    "text": "David Granjon (cynkra)\n\nDavid is lead Shiny developer at cynkra and holds a Ph.D. in applied mathematics from Université Pierre et Marie Curie and Université de Lausanne. He is the founder of the open source Interface organization, where he develops Shiny extensions, writes books and delivers advanced Shiny workshops from Posit Conf to R in Pharma. David worked 5 years in the pharma industry where he helped design production-ready Shiny apps."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "",
+    "text": "This course focuses on demonstrating how Shiny and Quarto can supercharge your data analysis and reporting workflows. It is therefore not a Data Science workshop."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "",
+    "text": "This course focuses on demonstrating how Shiny and Quarto can supercharge your data analysis and reporting workflows. It is therefore not a Data Science workshop."
+  },
+  {
+    "objectID": "index.html#pre-requisites",
+    "href": "index.html#pre-requisites",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "Pre-requisites:",
+    "text": "Pre-requisites:\n\nRecent R version installed (R &gt; 4.2.0).\nKnow how to run a script.\nKnowledge about R package development.\nUp to date IDE: RStudio/VSCode/Positron/… (https://posit.co/download/rstudio-desktop/).\nQuarto installed: https://quarto.org/docs/get-started/."
+  },
+  {
+    "objectID": "index.html#workshop-program",
+    "href": "index.html#workshop-program",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "Workshop program",
+    "text": "Workshop program\n\n\n\nSession\nTopic\nDuration\n\n\n\n\nWelcome\n👋 Welcome\n10 min\n\n\nSession 1\n📚 Exploratory data analysis with Shiny\n1h40min\n\n\nBreak\n☕ Active break (ask any questions)\n20 min\n\n\nSession 2\n📚 Seamless reporting with Quarto\n1h40min\n\n\nWrap\n🎁 Wrap up\n10 min"
+  },
+  {
+    "objectID": "index.html#recommended-readings",
+    "href": "index.html#recommended-readings",
+    "title": "Data Analysis and Reporting with Shiny and Quarto",
+    "section": "Recommended readings:",
+    "text": "Recommended readings:\n\nBooks:\n\nR packages.\nMastering Shiny.\nNonlinear Regression with R."
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#hi-and-welcome",
+    "href": "sessions/0_welcome/index.html#hi-and-welcome",
+    "title": "Introduction",
+    "section": "Hi and Welcome!",
+    "text": "Hi and Welcome!"
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#important-information",
+    "href": "sessions/0_welcome/index.html#important-information",
+    "title": "Introduction",
+    "section": "Important information",
+    "text": "Important information\n\nWorkshop website: TBD.\n…"
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#who-are-you-workshop-pre-requisites",
+    "href": "sessions/0_welcome/index.html#who-are-you-workshop-pre-requisites",
+    "title": "Introduction",
+    "section": "Who are you: workshop pre-requisites",
+    "text": "Who are you: workshop pre-requisites\n\n\nYou are a master student/doctoral student with data analysis background.\nYou don’t know or just heard about Shiny/Quarto and want to supercharge your work.\nYou know R."
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#david-granjon",
+    "href": "sessions/0_welcome/index.html#david-granjon",
+    "title": "Introduction",
+    "section": "David Granjon",
+    "text": "David Granjon\n\n\nDavid works as a Lead Shiny Developer at cynkra GmbH and founder of the open source RinteRface organisation."
+  },
+  {
+    "objectID": "sessions/0_welcome/index.html#objectives",
+    "href": "sessions/0_welcome/index.html#objectives",
+    "title": "Introduction",
+    "section": "Objectives",
+    "text": "Objectives\n\n\nUnderstand what is Shiny.\nHow to move from “static” data analysis to “dynamic” data analysis.\nDiscover how Quarto can improve your data reporting journey."
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#welcome-to-quarto",
+    "href": "sessions/2_quarto/index.html#welcome-to-quarto",
+    "title": "Easy reporting with Quarto",
+    "section": "Welcome to Quarto®",
+    "text": "Welcome to Quarto®\nAn open-source scientific and technical publishing system 1\nThis workshop is fully made with Quarto!"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#various-output-formats",
+    "href": "sessions/2_quarto/index.html#various-output-formats",
+    "title": "Easy reporting with Quarto",
+    "section": "Various output formats",
+    "text": "Various output formats\n\nReports.\nPresentations.\nBooks.\nWebsites, blogs.\nDashboards."
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#various-languages",
+    "href": "sessions/2_quarto/index.html#various-languages",
+    "title": "Easy reporting with Quarto",
+    "section": "Various languages",
+    "text": "Various languages\nR, Python, julia, observable."
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#how-quarto-works",
+    "href": "sessions/2_quarto/index.html#how-quarto-works",
+    "title": "Easy reporting with Quarto",
+    "section": "How Quarto works",
+    "text": "How Quarto works"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#is-is-complex",
+    "href": "sessions/2_quarto/index.html#is-is-complex",
+    "title": "Easy reporting with Quarto",
+    "section": "Is is complex?",
+    "text": "Is is complex?\n---\ntitle: \"Hello, Quarto\"\nformat: \n  html:\n    code-fold: true\n    code-tools: true\n    code-link: true\n  pdf:\n    geometry: \n      - top=30mm\n      - left=30mm\neditor: visual\n---\n\n## This is an example\n\nA super plot\n\n```{r}\n#| label: scatterplot\n#| echo: true\n\nggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +\n  geom_point(alpha = 0.5, size = 2) +\n  scale_color_viridis_c() +\n  theme_minimal()\n```\n\n## A second title"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#exercise-1",
+    "href": "sessions/2_quarto/index.html#exercise-1",
+    "title": "Easy reporting with Quarto",
+    "section": "Exercise 1",
+    "text": "Exercise 1\n\nGo in RStudio create a new quarto project and choose manuscript.\nInspect and discuss the structure of the document.\nClick on the render icon and select a format."
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#markdown-basics-1",
+    "href": "sessions/2_quarto/index.html#markdown-basics-1",
+    "title": "Easy reporting with Quarto",
+    "section": "Markdown basics (1)",
+    "text": "Markdown basics (1)\nHeadings\n# Heading 1\n## Heading 2\n...\n###### Heading 6\nImages\n![Caption](&lt;IMAGE_PATH&gt;){fig-align=\"center|left|right\" ...}\nCode\n```{r}\n#| echo: false\n#| fig-cap: \"Air Quality\"\n#| label: code label\n#| eval: true\n\nlibrary(tidyverse)\npenguins %&gt;% \n  group_by(species) %&gt;% \n  summarize(across(where(is.numeric), mean, na.rm = TRUE))\n```\nEquations\nInline\n$\\lambda$\nDisplay\n$$\n\\frac{dN}{dt} = rN \\left( 1 - \\frac{N}{K} \\right).\n$$"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#code-annotations",
+    "href": "sessions/2_quarto/index.html#code-annotations",
+    "title": "Easy reporting with Quarto",
+    "section": "Code annotations",
+    "text": "Code annotations\n\n\nCode\n\n```r\nlibrary(tidyverse)\nlibrary(palmerpenguins)\npenguins |&gt;                                      # &lt;1&gt;\n  mutate(                                        # &lt;2&gt;\n    bill_ratio = bill_depth_mm / bill_length_mm, # &lt;2&gt;\n    bill_area  = bill_depth_mm * bill_length_mm  # &lt;2&gt;\n  )                                              # &lt;2&gt;\n```\n1. Take `penguins`, and then,\n2. add new columns for the bill ratio and bill area.\n\nResult\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n1penguins |&gt;\n2  mutate(\n    bill_ratio = bill_depth_mm / bill_length_mm,\n    bill_area  = bill_depth_mm * bill_length_mm\n  )\n\n1\n\nTake penguins, and then,\n\n2\n\nadd new columns for the bill ratio and bill area."
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#code-options",
+    "href": "sessions/2_quarto/index.html#code-options",
+    "title": "Easy reporting with Quarto",
+    "section": "Code options",
+    "text": "Code options\n\n\nCode\n\n```r\n#| code-fold: true\n#| code-summary: \"Show the code\"\n1+1\n```\n\nResult\n\n\n[1] 2"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#output-location",
+    "href": "sessions/2_quarto/index.html#output-location",
+    "title": "Easy reporting with Quarto",
+    "section": "Output location",
+    "text": "Output location\nAdd #| output-location: column to you code options.\n\n```r\n#| output-location: column\n#| fig-width: 6\n#| fig-height: 4\nggplot(penguins, \n       aes(x = bill_length_mm, \n           y = bill_depth_mm, \n           color = species)) +\n  geom_point()\n```\n\n\n\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#diagrams",
+    "href": "sessions/2_quarto/index.html#diagrams",
+    "title": "Easy reporting with Quarto",
+    "section": "Diagrams",
+    "text": "Diagrams\nQuarto supports mermaid.js\n\n\nCode\n\n```mermaid\n%%| fig-width: 6.5\nflowchart LR\n  A[Hard edge] --&gt; B(Round edge)\n  B --&gt; C{Decision}\n```\n\nResult\n\n\n\n\n\nflowchart LR\n  A[Hard edge] --&gt; B(Round edge)\n  B --&gt; C{Decision}"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#caching-computations",
+    "href": "sessions/2_quarto/index.html#caching-computations",
+    "title": "Easy reporting with Quarto",
+    "section": "Caching computations",
+    "text": "Caching computations\n---\ntitle: \"My Document\"\nexecute: \n  cache: true\n---\n\n```{r}\n#| cache: true\n# code for lengthy computation...\n```\nTBD"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#a-dashboard-example",
+    "href": "sessions/2_quarto/index.html#a-dashboard-example",
+    "title": "Easy reporting with Quarto",
+    "section": "A dashboard example",
+    "text": "A dashboard example"
+  },
+  {
+    "objectID": "exercises.html",
+    "href": "exercises.html",
+    "title": "Exercises",
+    "section": "",
+    "text": "Exercises 1: discover reactive programming with the logistic model\n\nGoal: convert the code located at ./assets/1_shiny/logistic/verhulst.R into a Shiny app. By the end of this exercise, you should be able to know how to build a basic Shiny app, that is, what is part of the ui and the server.\n\nlibrary(ggplot2)\nlibrary(dplyr)\n\n# Read and transform data\nver &lt;- read.table(\n  \"http://pbil.univ-lyon1.fr/R/donnees/VerhulstPF1847.txt\",\n  sep = \"\\t\",\n  header = TRUE\n) |&gt;\n  mutate(obs = obs / 10^6, theo = theo / 10^6)\n\nt0 &lt;- ver$t[1]\nN0 &lt;- ver$obs[1]\n\n# Model equations\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0) / N0) * exp(-r * (t - t0)))\n  })\n}\n\n# Minimize\nsce &lt;- function(p) {\n  theo &lt;- logistic(ver$t, p = setNames(p, c(\"r\", \"K\")))\n  # Least squears\n  sum((ver$obs - theo)^2)\n}\n\n# Fit: K = 5 means 5 millions people max (*10^6)\nnlmfit &lt;- nlm(f = sce, p = c(0.02, 5))\n\n# Calculate model with predicted coefficients\ntseq &lt;- seq(from = 1800, to = 2000, by = 1)\nres &lt;- data.frame(\n  t = tseq,\n  y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n)\n\n# Add linear model alternative\nlm_coef &lt;- coef(lm(ver$obs ~ ver$t))\n\n# Plot everything\nggplot(data = res) +\n  geom_line(mapping = aes(x = t, y = y), color = \"red\") +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs)\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"grey\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in Belgium\"\n  )\n\n\n\n\n\n\n\n\n\nCreate an app.R file with this template:\n\nlibrary(shiny)\n\nui &lt;- fluidPage(\n  \n)\n\nserver &lt;- function(input, output, session) {\n  \n}\n\nshinyApp(ui, server)\n\nWithin the ui object, create 2 input widgets for r and K parameters. You can use ?shiny::numericInput for guidance.\nImportantly, anything that isn’t reactive can live outside the server function like the logistic function definition and other objects:\n\nlogistic &lt;- function(t, p) {\n  with(as.list(p), {\n    K / (1 + ((K - N0)/N0) * exp(-r*(t-t0)))\n  })\n}\n...\n\nIn the server object, create a reactive that calculate the predicted values by the logistic equation given the 2 UI input parameters (this isn’t the adjusted model):\n\nres &lt;- reactive({\n  # Calculate model with input parameter\n  data.frame(\n    t = tseq,\n    y = logistic(tseq, p = c(r = &lt;INPUT_1&gt;, K = &lt;INPUT_2&gt;)))\n  )\n})\n\nIn the server object use the res reactive expression to plot the data:\n\n# Replace TBD by what is relevant\noutput$&lt;TBD&gt; &lt;- render&lt;TBD&gt;({\n  ggplot(data = &lt;TBD&gt;) +\n  geom_line(mapping = aes(x = t, y = y), color = \"red\") +\n  geom_point(\n    data = ver,\n    mapping = aes(x = t, y = obs)\n  ) +\n  geom_abline(\n    slope = lm_coef[2],\n    intercept = lm_coef[1],\n    color = \"grey\",\n    linetype = \"dashed\"\n  ) +\n  labs(\n    x = \"Year\",\n    y = \"Population in million\",\n    title = \"Population growth in belgium\"\n  )\n})\nDon’t forget to add the corresponding *Output container in the ui part.\n\nRun the app and try to change r and K.\nLet’s fit the model. Create another reactive expression that returns the best fit and corresponding predicted results:\n\nfit &lt;- reactive({\n  # Replace &lt;INPUT_1&gt;, &lt;INPUT_2&gt; by what is defined in ui\n  nlmfit &lt;- nlm(f = sce, p = c(&lt;INPUT_1&gt;, &lt;INPUT_2&gt;))\n\n  # Calculate model with predicted coefficients\n  data.frame(\n    t = tseq,\n    y = logistic(tseq, p = setNames(nlmfit$estimate, c(\"r\", \"K\")))\n  )\n})\n\nModify the existing output to include the new fitted curve. Replace &lt;TBD&gt; by the relevant value:\n\noutput$plot &lt;- renderPlot({\n    ggplot(data = res()) +\n      geom_line(mapping = aes(x = t, y = y)) +\n      # Model fit curve\n      geom_line(data = &lt;TBD&gt;, mapping = aes(x = t, y = y), color = \"red\") +\n      geom_point(\n        data = ver,\n        mapping = aes(x = t, y = obs)\n      ) +\n      geom_abline(\n        slope = lm_coef[2],\n        intercept = lm_coef[1],\n        color = \"grey\",\n        linetype = \"dashed\"\n      ) +\n      labs(\n        x = \"Year\",\n        y = \"Population in million\",\n        title = \"Population growth in belgium\"\n      )\n  })\n\n\n\nExercises 2: kmeans clustering on the palmerpenguins dataset\n\nGoal: improve the application at ./assets/1_shiny/kmeans/tiny-app.R. You don’t need to change the server part of the application, as this exercise focuses on UI customisation.\n\nUse the page_sidebar() to split input and output. Typically you can start from something like:\n\npage_sidebar(\n  title = \"K-means Clustering of Palmer Penguins\",\n  sidebar = sidebar(\n    title = \"Controls\",\n    # INPUT CONTROLS\n  ),\n  # MAIN CONTENT (PLOTS)\n)\n\nReplace the radioButtons() by a more relevant widget. You can do the same for numericInput() and checkboxInput().\nMove the plot to the main content area."
   }
 ]

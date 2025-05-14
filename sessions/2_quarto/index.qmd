@@ -6,7 +6,8 @@ format:
     #code-annotations: select
     footer: "<img src=\"../../assets/images/cynkra.svg\" width=\"5%\"/>"
     css: [
-      "../../assets/css/custom.scss"
+      "../../assets/css/custom.scss",
+      "../../styles.css"
     ]
     height: 900
     width: 1600
@@ -23,4 +24,288 @@ editor:
     render-on-save: true
 ---
 
-## Quarto?
+```{r, setup}
+library(ggplot2)
+library(palmerpenguins)
+```
+
+## Welcome to Quarto®
+
+An open-source scientific and technical publishing system [^lol]
+
+<video autoplay="" muted="" playsinline="" loop="" style="display: block; margin: 0 auto;">
+<source src="../../assets/images/2_quarto/quarto.mp4" type="video/mp4">
+</video>
+
+[^lol]: This workshop is fully made with Quarto!
+
+
+## Various output formats
+
+- Reports.
+- Presentations.
+- Books.
+- Websites, blogs.
+- Dashboards.
+
+## Various languages
+
+R, Python, julia, observable.
+
+## How Quarto works
+
+![](../../assets/images/2_quarto/rstudio-qmd-how-it-works.png){fig-align="center"}
+
+## Is is complex?
+
+````md
+---
+title: "Hello, Quarto"
+format: 
+  html:
+    code-fold: true
+    code-tools: true
+    code-link: true
+  pdf:
+    geometry: 
+      - top=30mm
+      - left=30mm
+editor: visual
+---
+
+## This is an example
+
+A super plot
+
+```{{r}}
+#| label: scatterplot
+#| echo: true
+
+ggplot(mpg, aes(x = hwy, y = cty, color = cyl)) +
+  geom_point(alpha = 0.5, size = 2) +
+  scale_color_viridis_c() +
+  theme_minimal()
+```
+
+## A second title
+
+````
+
+## Exercise 1
+
+1. Go in RStudio create a new quarto project and choose `manuscript`.
+2. Inspect and discuss the structure of the document.
+3. Click on the `render` icon and select a format.
+
+::: {layout-ncol=2}
+![](../../assets/images/2_quarto/quarto-project.png)
+
+![](../../assets/images/2_quarto/manuscript-template.png)
+:::
+
+
+## Markdown basics (1)
+
+### Headings
+
+```md
+# Heading 1
+## Heading 2
+...
+###### Heading 6
+```
+
+### Images
+
+```md
+![Caption](<IMAGE_PATH>){fig-align="center|left|right" ...}
+```
+
+### Code
+
+```` markdown
+```{{r}}
+#| echo: false
+#| fig-cap: "Air Quality"
+#| label: code label
+#| eval: true
+
+library(tidyverse)
+penguins %>% 
+  group_by(species) %>% 
+  summarize(across(where(is.numeric), mean, na.rm = TRUE))
+```
+````
+
+### Equations
+
+#### Inline
+
+`$\lambda$`
+
+#### Display
+```md
+$$
+\frac{dN}{dt} = rN \left( 1 - \frac{N}{K} \right).
+$$
+```
+
+## Code annotations
+
+:::: columns
+
+::: column
+Code
+````markdown
+
+```r
+library(tidyverse)
+library(palmerpenguins)
+penguins |>                                      # <1>
+  mutate(                                        # <2>
+    bill_ratio = bill_depth_mm / bill_length_mm, # <2>
+    bill_area  = bill_depth_mm * bill_length_mm  # <2>
+  )                                              # <2>
+```
+1. Take `penguins`, and then,
+2. add new columns for the bill ratio and bill area.
+
+````
+:::
+
+::: column
+Result
+```r
+library(tidyverse)
+library(palmerpenguins)
+penguins |>                                      # <1>
+  mutate(                                        # <2>
+    bill_ratio = bill_depth_mm / bill_length_mm, # <2>
+    bill_area  = bill_depth_mm * bill_length_mm  # <2>
+  )                                              # <2>
+```
+1. Take `penguins`, and then,
+2. add new columns for the bill ratio and bill area.
+:::
+
+::::
+
+## Code options
+
+:::: columns
+
+::: column
+Code
+````markdown
+
+```r
+#| code-fold: true
+#| code-summary: "Show the code"
+1+1
+```
+
+````
+:::
+
+::: column
+Result
+```{r}
+#| code-fold: true
+#| code-summary: "Show the code"
+1 + 1
+```
+
+:::
+
+::::
+
+
+## Output location
+
+Add `#| output-location: column` to you code options.
+
+````markdown
+
+```r
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+ggplot(penguins, 
+       aes(x = bill_length_mm, 
+           y = bill_depth_mm, 
+           color = species)) +
+  geom_point()
+```
+
+````
+
+. . .
+
+<br>
+
+```{r, echo=TRUE}
+#| output-location: column
+#| fig-width: 6
+#| fig-height: 4
+
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point()
+```
+
+
+## Diagrams
+
+Quarto supports `mermaid.js`
+
+:::: columns
+
+::: column
+Code
+````markdown
+
+```mermaid
+%%| fig-width: 6.5
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+```
+
+````
+:::
+
+::: column
+Result
+```{mermaid}
+%%| theme: sandstone
+%%| fig-width: 6.5
+flowchart LR
+  A[Hard edge] --> B(Round edge)
+  B --> C{Decision}
+```
+
+:::
+
+::::
+
+
+## Caching computations
+
+````markdown
+---
+title: "My Document"
+execute: 
+  cache: true
+---
+
+```{{r}}
+#| cache: true
+# code for lengthy computation...
+```
+
+````
+
+TBD
+
+## A dashboard example
+
+<iframe src="https://grrrck.quarto.pub/mynorfolk-dash/" width="100%" height="500px"></iframe>
