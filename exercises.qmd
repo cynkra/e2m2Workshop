@@ -4,6 +4,8 @@ editor:
   render-on-save: true
 ---
 
+## Shiny
+
 <details open="true">
 <summary>Exercises 1: discover reactive programming with the logistic model</summary>
 
@@ -208,5 +210,95 @@ page_sidebar(
 
 2. Replace the `radioButtons()` by a more relevant widget. You can do the same for `numericInput()` and `checkboxInput()`.
 3. Move the plot to the main content area.
+
+</details>
+
+## Quarto
+
+<details open="true">
+<summary>Exercises 3: discover Quarto manuscripts</summary>
+
+1. Go in RStudio create a new quarto project and choose `manuscript`.
+2. Inspect and discuss the structure of the document.
+3. Click on the `render` icon and select a format.
+
+::: {layout-ncol=2}
+![](./assets/images/2_quarto/quarto-project.png)
+
+![](./assets/images/2_quarto/manuscript-template.png)
+:::
+
+4. We consider logistic model R scrip from exercise 1. From this R code,
+you can create a small article describing the model.
+  a. Structure the article with titles, subtitles, ...
+  b. Leverage code blocks to display the R code as well as the corresponding output.
+  c. Use Latex equations to describe the model.
+5. If you have better ideas, you can skip 4 and bring your own analysis problem.
+
+</details>
+
+<details open="true">
+<summary>Exercises 4: Quarto websites</summary>
+
+1. Go in RStudio create a new quarto project and choose `website`.
+2. Change the website title and render the new website from the main `index.qmd`.
+3. Create a new `qmd` page and add it to the __navbar__ structure.
+4. Change the __theme__: you can look at the bootswatch themes.
+
+::::{.columns}
+:::{.column}
+
+![](./assets/images/2_quarto/website-project.png){fig-align="center" width=75%}
+
+:::
+
+:::{.column}
+
+```yaml
+project:
+  type: website
+
+website:
+  title: "website-example"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    css: styles.css
+    toc: true
+```
+
+:::
+
+::::
+
+</details>
+
+
+<details open="true">
+<summary>Exercises 5: discover Quarto dashboards</summary>
+
+1. Transform the app from Exercise 2 (code [here](https://github.com/cynkra/e2m2Workshop/blob/b7f5197cd075375a7fbe9c5e5db3f2550ebd82e0/assets/R/1_shiny/kmeans/tiny-app/app.R))
+into a Quarto dashboard. As a starting point, you'll need something like:
+
+```r
+---
+title: "Kmeans explorer"
+author: "<YOUR NAME>"
+format: dashboard
+server: shiny
+---
+```
+
+__server__ is required for the computations to be done by Shiny.
+
+2. For the layout, you'll look at this [article](https://quarto.org/docs/dashboards/layout.html) and this [one](https://quarto.org/docs/dashboards/inputs.html).
 
 </details>
