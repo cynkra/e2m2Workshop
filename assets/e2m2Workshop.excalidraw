@@ -26,7 +26,7 @@
       "version": 285,
       "versionNonce": 643595625,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745458271204,
       "link": null,
       "locked": false,
@@ -123,7 +123,7 @@
       "version": 470,
       "versionNonce": 1487996521,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745458656307,
       "link": null,
       "locked": false,
@@ -160,7 +160,7 @@
       "version": 196,
       "versionNonce": 312668903,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745458658219,
       "link": null,
       "locked": false,
@@ -197,7 +197,7 @@
       "version": 168,
       "versionNonce": 325538569,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745458658219,
       "link": null,
       "locked": false,
@@ -273,7 +273,7 @@
       "version": 166,
       "versionNonce": 201791497,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745458574558,
       "link": null,
       "locked": false
@@ -484,7 +484,7 @@
       "version": 105,
       "versionNonce": 466805991,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745459280079,
       "link": null,
       "locked": false,
@@ -502,7 +502,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "Xdhl8plalLKmSGHXlhmJY",
@@ -529,7 +530,7 @@
       "version": 217,
       "versionNonce": 446384649,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745459295583,
       "link": null,
       "locked": false,
@@ -547,7 +548,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "a5gpzBu2mP9nACXaQ_gc3",
@@ -574,7 +576,7 @@
       "version": 795,
       "versionNonce": 1407892745,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745459349297,
       "link": null,
       "locked": false,
@@ -704,7 +706,7 @@
       "version": 71,
       "versionNonce": 624599273,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745459428815,
       "link": null,
       "locked": false,
@@ -914,7 +916,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "v9mEyhEURAaMApeyfWfzS",
@@ -959,7 +962,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "9vRsHJhsTplEWM9Zi7Awa",
@@ -1115,7 +1119,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "A_rxks2wMmbAPNtoJV4Fd",
@@ -1142,7 +1147,7 @@
       "version": 242,
       "versionNonce": 1059756103,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745459997800,
       "link": null,
       "locked": false,
@@ -1214,7 +1219,7 @@
       "x": 192.67667136728807,
       "y": 1655.898455154359,
       "width": 128.2373761170529,
-      "height": 1.3767844184855415e-7,
+      "height": 1.3767844153633746e-7,
       "angle": 0,
       "strokeColor": "#1971c2",
       "backgroundColor": "transparent",
@@ -1255,7 +1260,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "dsLeQ9wGM0gl2kjTtUKZ6",
@@ -1317,7 +1323,7 @@
       "version": 144,
       "versionNonce": 712880553,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745462778822,
       "link": null,
       "locked": false,
@@ -1413,7 +1419,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "5DqD6eHzGyUikxlqVMwH2",
@@ -1574,7 +1581,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "gx9P3o_XjzXVDIyNgtY9p",
@@ -1619,7 +1627,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "HR5wvD_rB-X_Ab--eXRsO",
@@ -1681,7 +1690,7 @@
       "version": 164,
       "versionNonce": 2013637607,
       "isDeleted": false,
-      "boundElements": null,
+      "boundElements": [],
       "updated": 1745462787865,
       "link": null,
       "locked": false,
@@ -1738,7 +1747,8 @@
       "startBinding": null,
       "endBinding": null,
       "startArrowhead": null,
-      "endArrowhead": null
+      "endArrowhead": null,
+      "polygon": false
     },
     {
       "id": "LpssP_24uIOGjf-kpccQm",
@@ -1782,7 +1792,8 @@
     "gridSize": 20,
     "gridStep": 5,
     "gridModeEnabled": false,
-    "viewBackgroundColor": "#ffffff"
+    "viewBackgroundColor": "#ffffff",
+    "lockedMultiSelections": {}
   },
   "files": {}
 }

@@ -306,11 +306,11 @@ execute:
 
 ## Exercise 1: Quarto manuscripts
 
-Complete exercise 3 at https://rsc.cynkra.com/e2m2-workshop/exercises.html.
+Complete exercise 3 at https://rsc.cynkra.com/e2m2-workshop/exercises.html#quarto.
 
 ## Exercise 2: Quarto websites
 
-Complete exercise 4 at https://rsc.cynkra.com/e2m2-workshop/exercises.html.
+Complete exercise 4 at https://rsc.cynkra.com/e2m2-workshop/exercises.html#quarto.
 
 ## Dashboards
 
@@ -339,3 +339,21 @@ output$distPlot <- renderPlot({
 })
 ```
 ````
+
+## Exercise 3: Quarto dashboards
+
+Complete exercise 5 at https://rsc.cynkra.com/e2m2-workshop/exercises.html#quarto.
+
+
+## Congratulations
+
+![](../../assets/images/1_shiny/congrats.svg){width="50%" fig-align="center"}
+
+## What's next
+
+Become a Quarto pro:
+
+- Get inspired: https://quarto.org/docs/gallery/.
+- Discover and use extensions: https://quarto.org/docs/extensions/.
+- Create custom extensions: https://quarto.org/docs/extensions/creating.html.
+- Read all guides: https://quarto.org/docs/guide/.

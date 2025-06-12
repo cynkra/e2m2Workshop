@@ -2,7 +2,7 @@
 '$schema' = 'https://cdn.posit.co/publisher/schemas/posit-publishing-record-schema-v3.json'
 server_type = 'connect'
 server_url = 'https://rsc.cynkra.com'
-client_version = '1.12.1'
+client_version = '1.16.1'
 created_at = '2025-05-14T07:27:10+02:00'
 dismissed_at = ''
 type = 'quarto-static'
@@ -11,9 +11,9 @@ id = '65860937-7b0f-45a6-a57d-cc431525ec65'
 dashboard_url = 'https://rsc.cynkra.com/connect/#/apps/65860937-7b0f-45a6-a57d-cc431525ec65'
 direct_url = 'https://rsc.cynkra.com/content/65860937-7b0f-45a6-a57d-cc431525ec65/'
 logs_url = 'https://rsc.cynkra.com/connect/#/apps/65860937-7b0f-45a6-a57d-cc431525ec65/logs'
-deployed_at = '2025-05-14T07:44:28+02:00'
-bundle_id = '3575'
-bundle_url = 'https://rsc.cynkra.com/__api__/v1/content/65860937-7b0f-45a6-a57d-cc431525ec65/bundles/3575/download'
+deployed_at = '2025-06-12T21:28:13+02:00'
+bundle_id = '3748'
+bundle_url = 'https://rsc.cynkra.com/__api__/v1/content/65860937-7b0f-45a6-a57d-cc431525ec65/bundles/3748/download'
 files = [
   '.posit/publish/deployments/deployment-IKOM.toml',
   '.posit/publish/e2m2-workshop-BNKL.toml',
@@ -33,6 +33,15 @@ files = [
   'assets/images/1_shiny/sad.svg',
   'assets/images/1_shiny/shiny.svg',
   'assets/images/1_shiny/surprise.svg',
+  'assets/images/2_quarto/R.svg',
+  'assets/images/2_quarto/julia.svg',
+  'assets/images/2_quarto/manuscript-template.png',
+  'assets/images/2_quarto/observable.svg',
+  'assets/images/2_quarto/python.svg',
+  'assets/images/2_quarto/quarto-project.png',
+  'assets/images/2_quarto/quarto.mp4',
+  'assets/images/2_quarto/rstudio-qmd-how-it-works.png',
+  'assets/images/2_quarto/website-project.png',
   'assets/images/cynkra.svg',
   'assets/images/david.jpg',
   'assets/images/hello.gif',
@@ -42,6 +51,7 @@ files = [
   'sessions/0_welcome/index.qmd',
   'sessions/1_shiny/index.qmd',
   'sessions/2_quarto/index.qmd',
+  'sessions/2_quarto/index_files/figure-revealjs/unnamed-chunk-2-1.png',
   'sessions/3_closing/index.qmd',
   'styles.css'
 ]
@@ -67,7 +77,8 @@ files = [
   '/assets',
   '!/assets/e2m2Workshop.excalidraw',
   '!/assets/R',
-  '!/assets/resources'
+  '!/assets/resources',
+  '/sessions'
 ]
 title = 'e2m2-workshop'
 
@@ -75,6 +86,7 @@ title = 'e2m2-workshop'
 version = '4.4.0'
 package_file = 'renv.lock'
 package_manager = 'renv'
+requires_r = '~=4.4.0'
 
 [configuration.quarto]
 version = '1.6.42'

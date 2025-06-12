@@ -375,14 +375,14 @@
     "href": "sessions/2_quarto/index.html#exercise-1-quarto-manuscripts",
     "title": "Easy reporting with Quarto",
     "section": "Exercise 1: Quarto manuscripts",
-    "text": "Exercise 1: Quarto manuscripts\nComplete exercise 3 at https://rsc.cynkra.com/e2m2-workshop/exercises.html."
+    "text": "Exercise 1: Quarto manuscripts\nComplete exercise 3 at https://rsc.cynkra.com/e2m2-workshop/exercises.html#quarto."
   },
   {
     "objectID": "sessions/2_quarto/index.html#exercise-2-quarto-websites",
     "href": "sessions/2_quarto/index.html#exercise-2-quarto-websites",
     "title": "Easy reporting with Quarto",
     "section": "Exercise 2: Quarto websites",
-    "text": "Exercise 2: Quarto websites\nComplete exercise 4 at https://rsc.cynkra.com/e2m2-workshop/exercises.html."
+    "text": "Exercise 2: Quarto websites\nComplete exercise 4 at https://rsc.cynkra.com/e2m2-workshop/exercises.html#quarto."
   },
   {
     "objectID": "assets/R/2_quarto/website-example/index.html",
@@ -432,5 +432,12 @@
     "title": "Easy reporting with Quarto",
     "section": "Dashboards",
     "text": "Dashboards\n---\ntitle: \"Old Faithful\"\nformat: dashboard\nserver: shiny\n---\n\n## {.sidebar}\n```{r}\nsliderInput(\"bins\", \"Number of bins:\", \n            min = 1, max = 50, value = 30)\nplotOutput(\"distPlot\")\n```\n\n## Column\n\n```{r}\n#| context: server\noutput$distPlot &lt;- renderPlot({\n  x &lt;- faithful[, 2]  # Old Faithful Geyser data\n  bins &lt;- seq(min(x), max(x), length.out = input$bins + 1)\n  hist(x, breaks = bins, col = 'darkgray', border = 'white')\n})\n```"
+  },
+  {
+    "objectID": "sessions/2_quarto/index.html#exercise-3-quarto-dashboards",
+    "href": "sessions/2_quarto/index.html#exercise-3-quarto-dashboards",
+    "title": "Easy reporting with Quarto",
+    "section": "Exercise 3: Quarto dashboards",
+    "text": "Exercise 3: Quarto dashboards\nComplete exercise 5 at https://rsc.cynkra.com/e2m2-workshop/exercises.html#quarto."
   }
 ]
