@@ -1,0 +1,180 @@
+---
+title: "Kmeans explorer"
+author: "<YOUR NAME>"
+format: dashboard
+server: shiny
+---
+
+```{r setup}
+library(shiny)
+library(bslib)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(palmerpenguins)
+```
+
+## {.sidebar}
+
+```{r}
+selectInput(
+  "x_var",
+  "X Variable:",
+  choices = c(
+    "bill_length_mm",
+    "bill_depth_mm",
+    "flipper_length_mm",
+    "body_mass_g"
+  ),
+  selected = "bill_length_mm"
+)
+selectInput(
+  "y_var",
+  "Y Variable:",
+  choices = c(
+    "bill_length_mm",
+    "bill_depth_mm",
+    "flipper_length_mm",
+    "body_mass_g"
+  ),
+  selected = "bill_depth_mm"
+)
+sliderInput("clusters", "Number of Clusters:", min = 2, max = 6, value = 3)
+checkboxInput("show_species", "Show Actual Species", TRUE)
+
+hr()
+
+helpText(
+  "This app performs k-means clustering on the Palmer Penguins dataset.
+             Select which variables to use for clustering and how many clusters to create."
+)
+```
+
+## Column
+
+```{r}
+card(
+  card_header("Clustering Visualization"),
+  plotOutput("cluster_plot")
+)
+card(
+  card_header("Cluster Summary"),
+  tableOutput("cluster_summary")
+)
+```
+
+## Row
+
+```{r}
+card(
+  card_header("Cluster Characteristics by Variable"),
+  plotOutput("cluster_boxplot")
+)
+```
+
+```{r}
+#| context: server
+# Filter out rows with NA values
+penguins_clean <- reactive({
+  penguins %>%
+    drop_na(!!sym(input$x_var), !!sym(input$y_var))
+})
+
+# Perform k-means clustering
+kmeans_model <- reactive({
+  # Select the two variables to use for clustering
+  data_for_clustering <- penguins_clean() %>%
+    select(!!sym(input$x_var), !!sym(input$y_var))
+
+  # Run k-means
+  kmeans(data_for_clustering, centers = input$clusters)
+})
+
+# Add clusters to dataset
+clustered_data <- reactive({
+  penguins_clean() %>%
+    mutate(cluster = as.factor(kmeans_model()$cluster))
+})
+
+# Scatter plot with clusters
+output$cluster_plot <- renderPlot({
+  data <- clustered_data()
+
+  p <- ggplot(data, aes(x = !!sym(input$x_var), y = !!sym(input$y_var))) +
+    geom_point(
+      aes(color = cluster, shape = if (input$show_species) species else NULL),
+      size = 3,
+      alpha = 0.8
+    ) +
+    geom_point(
+      data = as.data.frame(kmeans_model()$centers),
+      aes(x = !!sym(input$x_var), y = !!sym(input$y_var)),
+      color = "black",
+      size = 5,
+      shape = 8
+    ) +
+    theme_minimal(base_size = 14) +
+    labs(
+      title = "K-means Clustering Results",
+      x = gsub("_", " ", toupper(input$x_var)),
+      y = gsub("_", " ", toupper(input$y_var)),
+      color = "Cluster"
+    ) +
+    theme(legend.position = "right")
+
+  if (input$show_species) {
+    p <- p + labs(shape = "Species")
+  }
+
+  p
+})
+
+# Cluster summary table
+output$cluster_summary <- renderTable({
+  data <- clustered_data()
+
+  data %>%
+    group_by(cluster) %>%
+    summarize(
+      Count = n(),
+      `Avg X` = round(mean(!!sym(input$x_var)), 2),
+      `Avg Y` = round(mean(!!sym(input$y_var)), 2),
+      `Most Common Species` = if (all(is.na(species))) {
+        "Unknown"
+      } else {
+        names(which.max(table(species)))
+      }
+    )
+})
+
+# Boxplots for all numeric variables by cluster
+output$cluster_boxplot <- renderPlot({
+  data <- clustered_data()
+
+  # Get all numeric variables
+  numeric_vars <- data %>%
+    select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) %>%
+    names()
+
+  # Reshape data for plotting
+  data_long <- data %>%
+    select(all_of(numeric_vars), cluster) %>%
+    pivot_longer(
+      cols = numeric_vars,
+      names_to = "variable",
+      values_to = "value"
+    )
+
+  # Create boxplots
+  ggplot(data_long, aes(x = cluster, y = value, fill = cluster)) +
+    geom_boxplot() +
+    facet_wrap(
+      ~variable,
+      scales = "free_y",
+      labeller = as_labeller(function(x) gsub("_", " ", toupper(x)))
+    ) +
+    theme_minimal(base_size = 12) +
+    labs(x = "Cluster", y = "Value") +
+    theme(legend.position = "none")
+})
+```
